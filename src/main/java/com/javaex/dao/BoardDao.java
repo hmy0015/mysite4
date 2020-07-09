@@ -37,4 +37,11 @@ public class BoardDao {
 		
 		return sqlSession.selectOne("board.getPost", no);
 	}
+	
+	// dao 게시글 수정
+	public int update(BoardVo boardVo) {
+		System.out.println("2. BoardDao - 게시글 수정하기");
+		
+		return sqlSession.update("board.update", boardVo);
+	}
 }

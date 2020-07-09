@@ -33,4 +33,11 @@ public class BoardService {
 		
 		return boardDao.getPost(no);
 	}
+	
+	// Service 수정
+	public int modify(BoardVo boardVo) {
+		System.out.println("1. BoardService - 게시글 수정");
+		
+		return boardDao.update(boardVo);
+	}
 }

@@ -59,14 +59,25 @@ public class BoardController {
 	}
 	
 	// 게시글 수정 폼
-	@RequestMapping("/modifyForm")
-	public String modifyForm() {
+	@RequestMapping("/modifyForm/{no}")
+	public String modifyForm(@PathVariable("no") int no, Model model) {
 		System.out.println("[ modifyForm ]");
+		
+		BoardVo boardVo = boardService.read(no);
+		model.addAttribute("vo", boardVo);
 		
 		return "board/modifyForm";
 	}
 	
 	// 게시글 수정
+	@RequestMapping("/modify")
+	public String modify(@ModelAttribute BoardVo boardVo) {
+		System.out.println("[ modify ]");
+		
+		boardService.modify(boardVo);
+		
+		return "redirect:/board/list";
+	}
 	
 	// 게시글 삭제
 }
