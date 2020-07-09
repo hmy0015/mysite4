@@ -18,7 +18,7 @@
 		<!-- header / nav -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
-		<!-- asideUser -->
+		<!-- asideGuest -->
 		<c:import url="/WEB-INF/views/include/asideGuest.jsp"></c:import>
 
 		<div id="content">
