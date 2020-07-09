@@ -20,4 +20,10 @@ public class BoardService {
 		return boardDao.getList();
 	}
 	
+	// Service 게시글 등록
+	public int postInsert(BoardVo boardVo) {
+		System.out.println("1. BoardService - 게시글 등록");
+		
+		return boardDao.postInsert(boardVo);
+	}
 }
