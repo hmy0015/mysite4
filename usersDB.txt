@@ -1,0 +1,31 @@
+-- 테이블 삭제
+drop table users;
+
+-- 시퀀스 삭제
+drop SEQUENCE seq_user_no;
+
+-- 테이블 생성
+create table users(
+    no NUMBER,
+    id VARCHAR2(20) unique not null,
+    password varchar2(20) not null,
+    name varchar2(20),
+    gender varchar2(10),
+    primary key(no)
+);
+
+-- 시퀀스 생성
+create sequence seq_user_no
+increment by 1
+start with 1;
+
+INSERT INTO users VALUES(seq_user_no.nextval, 'hi01', '1234', '이정재', 'male');
+INSERT INTO users VALUES(seq_user_no.nextval, 'hi02', '1234', '이효리', 'female');
+INSERT INTO users VALUES(seq_user_no.nextval, 'hi03', '1234', '유재석', 'male');
+INSERT INTO users VALUES(seq_user_no.nextval, 'hi04', '1234', '유병재', 'male');
+
+-- commit
+commit;
+
+select * from users;
+select * from user_sequences;
