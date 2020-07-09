@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.javaex.service.BoardService;
@@ -41,12 +42,29 @@ public class BoardController {
 	public String write(@ModelAttribute BoardVo boardVo) {
 		System.out.println("[ write ]");
 
-		boardService.postInsert(boardVo);
+		boardService.write(boardVo);
 		
 		return "redirect:/board/list";
 	}
 	
+	// 게시글 읽어오기
+	@RequestMapping("/read/{no}")
+	public String read(@PathVariable("no") int no, Model model) {
+		System.out.println("[ read ]");
+		
+		BoardVo boardVo = boardService.read(no);
+		model.addAttribute("vo", boardVo);
+		
+		return "board/read";
+	}
+	
 	// 게시글 수정 폼
+	@RequestMapping("/modifyForm")
+	public String modifyForm() {
+		System.out.println("[ modifyForm ]");
+		
+		return "board/modifyForm";
+	}
 	
 	// 게시글 수정
 	

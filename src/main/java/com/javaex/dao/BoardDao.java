@@ -24,12 +24,17 @@ public class BoardDao {
 		return bList;
 	}
 	
-	// dao 글쓰기
+	// dao 게시글 등록
 	public int postInsert(BoardVo boardVo) {
 		System.out.println("2. BoardDao - 게시글 등록");
 		
 		return sqlSession.insert("board.insert", boardVo);
 	}
 	
-	// dao 수정
+	// dao 게시글 읽어오기
+	public BoardVo getPost(int no) {
+		System.out.println("2. BoardDao - 게시글 읽어오기");
+		
+		return sqlSession.selectOne("board.getPost", no);
+	}
 }

@@ -21,9 +21,16 @@ public class BoardService {
 	}
 	
 	// Service 게시글 등록
-	public int postInsert(BoardVo boardVo) {
+	public int write(BoardVo boardVo) {
 		System.out.println("1. BoardService - 게시글 등록");
 		
 		return boardDao.postInsert(boardVo);
+	}
+
+	// Service 게시글 읽어오기
+	public BoardVo read(int no) {
+		System.out.println("1. BoardService - 게시글 읽어오기");
+		
+		return boardDao.getPost(no);
 	}
 }
