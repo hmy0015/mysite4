@@ -56,46 +56,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr class="last">
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
+						<c:set var="i" value="-1"/>
+							<c:forEach items="${requestScope.bList}" var="vo" varStatus="status">
+								<input type="hidden" value=${i = i + 1}>
+								<tr>
+									<td>${bList.size() - i}</td>
+									<td class="text-left"><a href="#">${vo.title}</a></td>
+									<td>${vo.name}</td>
+									<td>${vo.hit}</td>
+									<td>${vo.reg_date}</td>
+									<td>
+										<c:if test="${authUser.no == vo.user_no}">
+											<a href="">[삭제]</a>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 		
@@ -118,7 +94,9 @@
 						
 						<div class="clear"></div>
 					</div>
-					<a id="btn_write" href="">글쓰기</a>
+					<c:if test="${authUser != null}">
+						<a id="btn_write" href="">글쓰기</a>
+					</c:if>
 				
 				</div>
 				<!-- //list -->
