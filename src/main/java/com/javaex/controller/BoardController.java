@@ -30,9 +30,11 @@ public class BoardController {
 	}
 	
 	// 게시글 등록 폼
-	@RequestMapping("/writeForm")
-	public String writeForm() {
+	@RequestMapping("/writeForm/{uNo}")
+	public String writeForm(@PathVariable("uNo") int uNo, Model model) {
 		System.out.println("[ writeForm ]");
+		
+		model.addAttribute("uNo", uNo);
 		
 		return "board/writeForm";
 	}
@@ -42,6 +44,7 @@ public class BoardController {
 	public String write(@ModelAttribute BoardVo boardVo) {
 		System.out.println("[ write ]");
 
+		System.out.println(boardVo.toString());
 		boardService.write(boardVo);
 		
 		return "redirect:/board/list";
@@ -80,4 +83,12 @@ public class BoardController {
 	}
 	
 	// 게시글 삭제
+	@RequestMapping("/delete/{no}")
+	public String delete(@PathVariable("no") int no) {
+		System.out.println("[ delete ]");
+		
+		boardService.delete(no);
+		
+		return "redirect:/board/list";
+	}
 }

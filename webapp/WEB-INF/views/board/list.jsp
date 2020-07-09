@@ -67,7 +67,7 @@
 									<td>${vo.reg_date}</td>
 									<td>
 										<c:if test="${authUser.no == vo.user_no}">
-											<a href="">[삭제]</a>
+											<a href="${pageContext.request.contextPath}/board/delete/${vo.no}">[삭제]</a>
 										</c:if>
 									</td>
 								</tr>
@@ -95,7 +95,7 @@
 						<div class="clear"></div>
 					</div>
 					<c:if test="${authUser != null}">
-						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
+						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm/${authUser.no}">글쓰기</a>
 					</c:if>
 				
 				</div>

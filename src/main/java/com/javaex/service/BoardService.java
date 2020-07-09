@@ -34,10 +34,17 @@ public class BoardService {
 		return boardDao.getPost(no);
 	}
 	
-	// Service 수정
+	// Service 게시글 수정
 	public int modify(BoardVo boardVo) {
 		System.out.println("1. BoardService - 게시글 수정");
 		
 		return boardDao.update(boardVo);
+	}
+
+	// Service 게시글 삭제
+	public int delete(int no) {
+		System.out.println("1. BoardService - 게시글 삭제");
+		
+		return boardDao.delete(no);
 	}
 }

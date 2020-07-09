@@ -44,4 +44,11 @@ public class BoardDao {
 		
 		return sqlSession.update("board.update", boardVo);
 	}
+
+	// dao 게시글 삭제
+	public int delete(int no) {
+		System.out.println("2. BoardDao - 게시글 삭제");
+		
+		return sqlSession.delete("board.delete", no);
+	}
 }
