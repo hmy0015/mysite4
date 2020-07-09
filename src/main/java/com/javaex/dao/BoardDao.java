@@ -14,7 +14,7 @@ import com.javaex.vo.BoardVo;
 public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	// dao 리스트 가져오기 
 	public List<BoardVo> getList() {
 		System.out.println("2. BoardDao - 리스트 가져오기");
@@ -51,4 +51,10 @@ public class BoardDao {
 		
 		return sqlSession.delete("board.delete", no);
 	}
+	
+	// dao 카운트
+	public int cnt(int no) {
+		return sqlSession.update("board.cnt", no);
+	}
+	
 }

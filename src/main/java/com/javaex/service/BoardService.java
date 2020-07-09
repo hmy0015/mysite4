@@ -31,6 +31,8 @@ public class BoardService {
 	public BoardVo read(int no) {
 		System.out.println("1. BoardService - 게시글 읽어오기");
 		
+		boardDao.cnt(no);
+		
 		return boardDao.getPost(no);
 	}
 	
@@ -47,4 +49,5 @@ public class BoardService {
 		
 		return boardDao.delete(no);
 	}
+
 }

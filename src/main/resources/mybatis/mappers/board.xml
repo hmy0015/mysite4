@@ -62,4 +62,11 @@
     </delete>
     
     <!-- 카운트 -->
+    <update id="cnt" parameterType="int">
+		<![CDATA[
+	    	update board
+			set hit = hit + 1
+			where no = #{no}
+		]]>
+    </update>
 </mapper>
