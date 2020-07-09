@@ -15,11 +15,12 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// dao 리스트 가져오기 
-	public List<BoardVo> getList() {
-		System.out.println("2. BoardDao - 리스트 가져오기");
+	// dao 게시글 가져오기 및 검색
+	public List<BoardVo> getList(String keyword) {
 		
-		List<BoardVo> bList = sqlSession.selectList("board.getList");
+		String title = "%" + keyword + "%";
+		
+		List<BoardVo> bList = sqlSession.selectList("board.getList", title);
 		
 		return bList;
 	}

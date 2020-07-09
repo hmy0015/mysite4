@@ -14,10 +14,12 @@ public class BoardService {
 	private BoardDao boardDao;
 
 	// Service 리스트 가져오기
-	public List<BoardVo> getList() {
+	public List<BoardVo> getList(String keyword) {
 		System.out.println("1. BoardService - 리스트 가져오기");
 		
-		return boardDao.getList();
+		List<BoardVo> bList = boardDao.getList(keyword);
+		
+		return bList;
 	}
 	
 	// Service 게시글 등록
