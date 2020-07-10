@@ -30,7 +30,7 @@
 					<ul>
 						<li>홈</li>
 						<li>게시판</li>
-						<li class="last">일반게시판</li>
+						<li class="last">댓글게시판</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -95,8 +95,9 @@
 						
 						<div class="clear"></div>
 					</div>
-					<a id="btn_write" href="">글쓰기</a>
-				
+					<c:if test="${authUser != null}">
+						<a id="btn_write" href="${pageContext.request.contextPath}/reboard/writeForm/${authUser.no}">글쓰기</a>
+					</c:if>
 				</div>
 				<!-- //list -->
 			</div>

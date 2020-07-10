@@ -39,4 +39,14 @@ public class ReplyBoardController {
 		
 		return "reboard/read";
 	}
+	
+	// 게시글 등록
+	@RequestMapping("/writeForm")
+	public String writeForm(@PathVariable("uNo") int uNo, Model model) {
+		System.out.println("[ ReplyBoard - writeForm ]");
+		
+		model.addAttribute("uNo", uNo);
+		
+		return "reboard/writeForm";
+	}
 }
