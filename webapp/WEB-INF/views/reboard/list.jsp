@@ -62,7 +62,7 @@
 								<input type="hidden" value=${i = i + 1}>
 								<tr>
 									<td>${rList.size() - i}</td>
-									<td class="text-left"><a href="">${vo.title}</a></td>
+									<td class="text-left"><a href="${pageContext.request.contextPath}/reboard/read/${vo.no}">${vo.title}</a></td>
 									<td>${vo.name}</td>
 									<td>${vo.hit}</td>
 									<td>${vo.reg_date}</td>

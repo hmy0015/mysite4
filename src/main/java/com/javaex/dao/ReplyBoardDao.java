@@ -13,7 +13,7 @@ public class ReplyBoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// dao 게시글 가져오기
+	// dao 리스트 가져오기
 	public List<ReplyBoardVo> getList() {
 		System.out.println("2. ReplyBoardDao - 리스트 가져오기");
 		
@@ -22,5 +22,13 @@ public class ReplyBoardDao {
 		System.out.println(rList);
 		
 		return rList;
+	}
+
+	// dao 게시글 가져오기
+	public ReplyBoardVo getPost(int no) {
+		System.out.println("2. ReplyBoardDao - 게시글 가져오기");
+		
+		
+		return sqlSession.selectOne("reboard.getPost", no);
 	}
 }

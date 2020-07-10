@@ -68,10 +68,10 @@
 							<span class="form-value" >${vo.content}</span>
 						</div>
 						
+						<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
 						<c:if test="${authUser.no == vo.user_no}">
 							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm/${vo.no}">수정</a>
 						</c:if>
-						<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
 						
 					</form>
 	                <!-- //form -->

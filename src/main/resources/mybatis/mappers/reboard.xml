@@ -21,6 +21,23 @@
 			order by r.no desc
 		]]>
 	</select>
-	
-	
+
+	<!-- 게시글 가져오기 -->
+	<select id="getPost" parameterType="int" resultType="com.javaex.vo.ReplyBoardVo">
+		<![CDATA[
+			select  r.no,
+			        r.user_no,
+			        u.name,
+			        r.title,
+			        r.content,
+			        r.hit,
+			        to_char(r.reg_date,'yyyy-mm-dd hh24:mi') reg_date,
+			        r.group_no,
+			        r.order_no,
+			        r.depth
+			from replyboard r, users u
+			where r.user_no = u.no
+			and r.no = #{no}
+		]]>
+	</select>
 </mapper>

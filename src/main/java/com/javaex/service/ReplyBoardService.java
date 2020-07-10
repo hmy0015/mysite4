@@ -22,4 +22,10 @@ public class ReplyBoardService {
 		return rList;
 	}
 
+	// Service 게시글 가져오기
+	public ReplyBoardVo read(int no) {
+		System.out.println("1. ReplyBoardService - 게시글 가져오기");
+		
+		return reboardDao.getPost(no);
+	}
 }
