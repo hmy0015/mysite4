@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,7 @@
 
 <body>
 	<div id="wrap">
+
 		<!-- header / nav -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
@@ -38,9 +39,9 @@
 
 			<div id="board">
 				<div id="list">
-					<form action="${pageContext.request.contextPath}/board/list" method="">
+					<form action="" method="">
 						<div class="form-group text-right">
-							<input type="text" name="keyword" value="">
+							<input type="text">
 							<button type="submit" id=btn_search>검색</button>
 						</div>
 					</form>
@@ -56,18 +57,18 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:set var="i" value="-1"/>
-							<c:forEach items="${bList}" var="vo" varStatus="status">
+							<c:set var="i" value="-1"/>
+							<c:forEach items="${rList}" var="vo" varStatus="status">
 								<input type="hidden" value=${i = i + 1}>
 								<tr>
-									<td>${bList.size() - i}</td>
-									<td class="text-left"><a href="${pageContext.request.contextPath}/board/read/${vo.no}">${vo.title}</a></td>
+									<td>${rList.size() - i}</td>
+									<td class="text-left"><a href="">${vo.title}</a></td>
 									<td>${vo.name}</td>
 									<td>${vo.hit}</td>
 									<td>${vo.reg_date}</td>
 									<td>
 										<c:if test="${authUser.no == vo.user_no}">
-											<a href="${pageContext.request.contextPath}/board/delete/${vo.no}">[삭제]</a>
+											<a href="">[삭제]</a>
 										</c:if>
 									</td>
 								</tr>
@@ -94,9 +95,7 @@
 						
 						<div class="clear"></div>
 					</div>
-					<c:if test="${authUser != null}">
-						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm/${authUser.no}">글쓰기</a>
-					</c:if>
+					<a id="btn_write" href="">글쓰기</a>
 				
 				</div>
 				<!-- //list -->
@@ -108,7 +107,7 @@
 
 		<!-- //footer -->
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-		
+
 	</div>
 	<!-- //wrap -->
 

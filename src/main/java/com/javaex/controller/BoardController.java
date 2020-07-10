@@ -23,7 +23,7 @@ public class BoardController {
 	// 리스트
 	@RequestMapping("/list")
 	public String list(@RequestParam(value="keyword", required = false, defaultValue = "") String keyword, Model model) {
-		System.out.println("[ list ]");
+		System.out.println("[ Board - list ]");
 		
 		List<BoardVo> boardVo = boardService.getList(keyword);
 		model.addAttribute("bList", boardVo);
@@ -34,7 +34,7 @@ public class BoardController {
 	// 게시글 등록 폼
 	@RequestMapping("/writeForm/{uNo}")
 	public String writeForm(@PathVariable("uNo") int uNo, Model model) {
-		System.out.println("[ writeForm ]");
+		System.out.println("[ Board - writeForm ]");
 		
 		model.addAttribute("uNo", uNo);
 		
@@ -44,7 +44,7 @@ public class BoardController {
 	// 게시글 등록
 	@RequestMapping("/write")
 	public String write(@ModelAttribute BoardVo boardVo) {
-		System.out.println("[ write ]");
+		System.out.println("[ Board - write ]");
 
 		System.out.println(boardVo.toString());
 		boardService.write(boardVo);
@@ -55,7 +55,7 @@ public class BoardController {
 	// 게시글 읽어오기
 	@RequestMapping("/read/{no}")
 	public String read(@PathVariable("no") int no, Model model) {
-		System.out.println("[ read ]");
+		System.out.println("[ Board - read ]");
 		
 		BoardVo boardVo = boardService.read(no);
 		model.addAttribute("vo", boardVo);
@@ -66,7 +66,7 @@ public class BoardController {
 	// 게시글 수정 폼
 	@RequestMapping("/modifyForm/{no}")
 	public String modifyForm(@PathVariable("no") int no, Model model) {
-		System.out.println("[ modifyForm ]");
+		System.out.println("[ Board - modifyForm ]");
 		
 		BoardVo boardVo = boardService.read(no);
 		model.addAttribute("vo", boardVo);
@@ -77,7 +77,7 @@ public class BoardController {
 	// 게시글 수정
 	@RequestMapping("/modify")
 	public String modify(@ModelAttribute BoardVo boardVo) {
-		System.out.println("[ modify ]");
+		System.out.println("[ Board - modify ]");
 		
 		boardService.modify(boardVo);
 		
@@ -87,7 +87,7 @@ public class BoardController {
 	// 게시글 삭제
 	@RequestMapping("/delete/{no}")
 	public String delete(@PathVariable("no") int no) {
-		System.out.println("[ delete ]");
+		System.out.println("[ Board - delete ]");
 		
 		boardService.delete(no);
 		

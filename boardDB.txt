@@ -47,14 +47,27 @@ SELECT b.no,
         b.content,
         u.name,
         b.hit,
-        to_char(b.reg_date, 'yyyy-mm-dd hh:mi'),
+        to_char(b.reg_date, 'yyyy-mm-dd hh:mi') reg_date,
         b.user_no
 FROM board b, users u
-where b.user_no = u.no;
+where b.user_no = u.no
+and b.title like '%%'
+order by b.no desc;
 
 delete from board
-where user_no = 2;
+where no = 1;
 
+SELECT b.no no,
+       u.name name,
+       b.hit hit,
+       to_char(b.reg_date, 'yyyy-mm-dd') "date",
+       b.title title,
+       b.content content,
+       b.user_no "userNo"
+FROM board b left outer join users u
+ON b.user_no =  u.no
+WHERE b.no =
+            
 update board
 set title = '수정 - 제목01',
     content = '수정 - 내용01'
@@ -63,6 +76,7 @@ where no = 1;
 update board
 set hit = hit + 1
 where no = 1;
+
 
 SELECT b.no,
         b.title,
