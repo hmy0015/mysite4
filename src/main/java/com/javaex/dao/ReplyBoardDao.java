@@ -28,7 +28,18 @@ public class ReplyBoardDao {
 	public ReplyBoardVo getPost(int no) {
 		System.out.println("2. ReplyBoardDao - 게시글 가져오기");
 		
-		
 		return sqlSession.selectOne("reboard.getPost", no);
 	}
+	
+	// dao 게시글 등록
+	public int postInsert(ReplyBoardVo replyboardVo) {
+		System.out.println("2. ReplyBoardDao - 게시글 등록");
+
+		System.out.println(replyboardVo.toString());
+		
+		return sqlSession.insert("reboard.postInsert", replyboardVo);
+	}
+	
+	// dao 답글 등록
+	
 }

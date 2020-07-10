@@ -28,7 +28,7 @@
 				<h3>게시판</h3>
 				<div id="location">
 					<ul>
-						<li>홈</li>S
+						<li>홈</li>
 						<li>게시판</li>
 						<li class="last">일반게시판</li>
 					</ul>
@@ -39,7 +39,7 @@
 
 			<div id="board">
 				<div id="writeForm">
-					<form action="${pageContext.request.contextPath}/board/write" method="get">
+					<form action="${pageContext.request.contextPath}/reboard/write" method="get">
 						<input type="hidden" name="user_no" value="${uNo}">
 						<!-- 제목 -->
 						<div class="form-group">

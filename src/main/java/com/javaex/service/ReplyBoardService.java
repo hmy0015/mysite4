@@ -28,4 +28,14 @@ public class ReplyBoardService {
 		
 		return reboardDao.getPost(no);
 	}
+	
+	// Service 게시글 등록
+	public int write(ReplyBoardVo replyboardVo) {
+		System.out.println("1. ReplyBoardService - 게시글 등록");
+		
+		System.out.println(replyboardVo.toString());
+		
+		return reboardDao.postInsert(replyboardVo);
+	}
+
 }

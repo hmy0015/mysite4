@@ -40,4 +40,12 @@
 			and r.no = #{no}
 		]]>
 	</select>
+	
+	<!-- 게시글 등록하기 -->
+	<select id="postInsert" parameterType="com.javaex.vo.ReplyBoardVo">
+		<![CDATA[
+			INSERT INTO replyboard
+			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, seq_rBoard_no.nextval, 1, 1)
+		]]>
+	</select>
 </mapper>

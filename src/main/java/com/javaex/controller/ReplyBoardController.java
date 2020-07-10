@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,13 +41,23 @@ public class ReplyBoardController {
 		return "reboard/read";
 	}
 	
-	// 게시글 등록
-	@RequestMapping("/writeForm")
+	// 게시글 등록 폼
+	@RequestMapping("/writeForm/{uNo}")
 	public String writeForm(@PathVariable("uNo") int uNo, Model model) {
 		System.out.println("[ ReplyBoard - writeForm ]");
 		
 		model.addAttribute("uNo", uNo);
 		
 		return "reboard/writeForm";
+	}
+	
+	// 게시글 등록
+	@RequestMapping("/write")
+	public String write(@ModelAttribute ReplyBoardVo reboardVo) {
+		System.out.println("[ ReplyBoard - write ]");
+		
+		reboardService.write(reboardVo);
+		
+		return "redirect:/reboard/list";
 	}
 }
