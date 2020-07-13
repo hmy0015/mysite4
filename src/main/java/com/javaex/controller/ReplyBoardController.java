@@ -119,8 +119,8 @@ public class ReplyBoardController {
 	}
 	
 	// 게시글 삭제
-	@RequestMapping("/delete")
-	public String delete(@RequestParam("no") int no,
+	@RequestMapping("/delete/{no}")
+	public String delete(@PathVariable("no") int no,
 						 @RequestParam("pw") String pw) {
 		System.out.println("[ delete ]");
 		

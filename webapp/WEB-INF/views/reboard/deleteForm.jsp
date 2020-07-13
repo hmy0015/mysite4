@@ -37,8 +37,7 @@
             <!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="${pageContext.request.contextPath}/reboard/delete" method="">
-					<input type="hidden" name="no" value=${no}>
+				<form action="${pageContext.request.contextPath}/reboard/delete/${no}" method="">
 					<table id="guestDelete">
 						<colgroup>
 							<col style="width: 15%;">
