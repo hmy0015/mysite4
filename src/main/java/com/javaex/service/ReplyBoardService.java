@@ -42,8 +42,16 @@ public class ReplyBoardService {
 	public int reply(ReplyBoardVo replyboardVo) {
 		System.out.println("1. ReplyBoardService - 답글 등록");
 		
+		// 해당글을 제외 한 답글들의 order_no를 1씩 증가
 		int gNo = replyboardVo.getGroup_no();
 		reboardDao.oNoUpdate(gNo);
+
+		// 해당글의 order_no, depth를 1씩 증가
+		int order_no = replyboardVo.getOrder_no();
+		int depth = replyboardVo.getDepth();
+
+		replyboardVo.setOrder_no(order_no + 1);
+		replyboardVo.setDepth(depth + 1);
 		
 		return reboardDao.replyInsert(replyboardVo);
 	}

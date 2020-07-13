@@ -44,14 +44,6 @@ public class ReplyBoardDao {
 	public int replyInsert(ReplyBoardVo replyboardVo) {
 		System.out.println("2. ReplyBoardDao - 답글 등록");
 		
-		int order_no = replyboardVo.getOrder_no();
-		int depth = replyboardVo.getDepth();
-
-		replyboardVo.setOrder_no(order_no + 1);
-		replyboardVo.setDepth(depth + 1);
-
-		System.out.println(replyboardVo.toString());
-		
 		return sqlSession.insert("reboard.replyInsert", replyboardVo);
 	}
 	
