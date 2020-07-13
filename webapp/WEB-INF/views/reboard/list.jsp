@@ -72,7 +72,7 @@
 										
 										<!-- 삭제 된 게시글일 경우 제목에 링크 연결하지 않음, 아닐 경우 제목에 링크 연결 -->
 										<c:choose>
-											<c:when test="${vo.content == null}"> ${vo.title} </c:when>
+											<c:when test="${vo.state == 'del'}"> 삭제 된 게시글입니다. </c:when>
 											
 											<c:otherwise>
 												<a href="${pageContext.request.contextPath}/reboard/read/${vo.no}">${vo.title}</a>
@@ -82,7 +82,7 @@
 									
 									<!-- 삭제 된 게시글일 경우 no와 제목 이외의 데이터를 표시하지 않음, 아닐 경우 content를 제외하고 모두 표시 -->
 									<c:choose>
-										<c:when test="${vo.content == null}"> 
+										<c:when test="${vo.state == 'del'}"> 
 											<td></td> <td></td> <td></td> <td></td>
 										</c:when>
 										

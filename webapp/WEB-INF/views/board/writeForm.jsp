@@ -39,7 +39,7 @@
 
 			<div id="board">
 				<div id="writeForm">
-					<form action="${pageContext.request.contextPath}/reboard/write" method="get">
+					<form action="${pageContext.request.contextPath}/board/write" method="get">
 						<input type="hidden" name="user_no" value="${uNo}">
 						<!-- 제목 -->
 						<div class="form-group">

@@ -11,11 +11,12 @@ public class ReplyBoardVo {
 	private int group_no;
 	private int order_no;
 	private int depth;
+	private String state;
 	
 	public ReplyBoardVo() {}
 
 	public ReplyBoardVo(int no, int user_no, String name, String title, String content, int hit, String reg_date,
-			int group_no, int order_no, int depth) {
+			int group_no, int order_no, int depth, String state) {
 		this.no = no;
 		this.user_no = user_no;
 		this.name = name;
@@ -26,6 +27,7 @@ public class ReplyBoardVo {
 		this.group_no = group_no;
 		this.order_no = order_no;
 		this.depth = depth;
+		this.state = state;
 	}
 
 	public int getNo() {
@@ -108,11 +110,19 @@ public class ReplyBoardVo {
 		this.depth = depth;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "ReplyBoardVo [no=" + no + ", user_no=" + user_no + ", name=" + name + ", title=" + title + ", content="
 				+ content + ", hit=" + hit + ", reg_date=" + reg_date + ", group_no=" + group_no + ", order_no="
-				+ order_no + ", depth=" + depth + "]";
+				+ order_no + ", depth=" + depth + ", state=" + state + "]";
 	}
 
 }

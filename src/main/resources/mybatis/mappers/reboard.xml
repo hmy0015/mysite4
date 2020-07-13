@@ -15,7 +15,8 @@
         			to_char(r.reg_date,'yyyy-mm-dd hh24:mi') reg_date,
 			        r.group_no,
 			        r.order_no,
-			        r.depth
+			        r.depth,
+        			r.state
 			from replyboard r, users u
 			where r.user_no = u.no
 			and r.title like #{title}
@@ -46,7 +47,7 @@
 	<select id="postInsert" parameterType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			INSERT INTO replyboard
-			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, seq_rBoard_no.nextval, 1, 1)
+			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, seq_rBoard_no.nextval, 1, 1, null)
 		]]>
 	</select>
 	
@@ -54,7 +55,7 @@
 	<select id="replyInsert" parameterType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			INSERT INTO replyboard
-			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, #{group_no}, #{order_no}, #{depth})
+			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, #{group_no}, #{order_no}, #{depth}, null)
 		]]>
 	</select>
 	
@@ -102,12 +103,11 @@
     <update id="delete" parameterType="int">
 		<![CDATA[
 	    	update replyboard
-			set title = '삭제 된 게시물입니다.',
-    			content = null
+			set state = 'del'
 			where no = #{no}
 			AND user_no in (select u.no
-                from users u
-                where u.password = #{password})
+			                from users u
+			                where u.password = #{password})
 		]]>
     </update>
     
