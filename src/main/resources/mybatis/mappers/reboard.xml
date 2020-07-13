@@ -86,4 +86,15 @@
 			where no = #{no}
 		]]>
     </update>
+    
+    <!-- 게시글 삭제 -->
+    <delete id="delete" parameterType="map">
+	    <![CDATA[
+			DELETE FROM replyboard r
+			WHERE no = #{no}
+			AND r.user_no in (select u.no
+			                  from users u
+			                  where u.password = #{password})
+		]]>
+    </delete>
 </mapper>

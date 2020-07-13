@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.ReplyBoardService;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.GuestVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Controller
@@ -104,6 +105,27 @@ public class ReplyBoardController {
 		
 		reboardService.modify(reboardVo);
 
+		return "redirect:/reboard/list";
+	}
+	
+	// 게시글 삭제 폼
+	@RequestMapping("/deleteForm/{no}")
+	public String deleteForm(@PathVariable("no") int no, Model model) {
+		System.out.println("[ ReplyBoard - deleteForm ]");
+
+		model.addAttribute("no", no);
+		
+		return "reboard/deleteForm";
+	}
+	
+	// 게시글 삭제
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("no") int no,
+						 @RequestParam("pw") String pw) {
+		System.out.println("[ delete ]");
+		
+		reboardService.delete(no, pw);
+		
 		return "redirect:/reboard/list";
 	}
 }

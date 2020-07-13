@@ -1,12 +1,13 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.javaex.vo.BoardVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Repository
@@ -63,5 +64,16 @@ public class ReplyBoardDao {
 	// dao 카운트
 	public int cnt(int no) {
 		return sqlSession.update("reboard.cnt", no);
+	}
+	
+	// dao 게시글 삭제
+	public int delete(int no, String pw) {
+		System.out.println("2. ReplyBoardDao - 게시글 삭제");
+		
+		Map<String, Object> delPostMap = new HashMap<String, Object>();
+		delPostMap.put("no", no);
+		delPostMap.put("password", pw);
+		
+		return sqlSession.delete("reboard.delete", delPostMap);
 	}
 }

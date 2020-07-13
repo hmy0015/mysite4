@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.dao.ReplyBoardDao;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.GuestVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Service
@@ -60,5 +61,12 @@ public class ReplyBoardService {
 		System.out.println("1. ReplyBoardService - 게시글 수정");
 		
 		return reboardDao.update(replyboardVo);
+	}
+	
+	// Service 게시글 삭제
+	public int delete(int no, String pw) {
+		System.out.println("1. ReplyBoardService - 게시글 삭제");
+		
+		return reboardDao.delete(no, pw);
 	}
 }

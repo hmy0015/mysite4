@@ -19,7 +19,7 @@
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<!-- asideGuest -->
-		<c:import url="/WEB-INF/views/include/asideGuest.jsp"></c:import>
+		<c:import url="/WEB-INF/views/include/asideBoard.jsp"></c:import>
 
 		<div id="content">
 			
@@ -41,15 +41,15 @@
 					<input type="hidden" name="no" value=${no}>
 					<table id="guestDelete">
 						<colgroup>
-							<col style="width: 10%;">
+							<col style="width: 15%;">
 							<col style="width: 40%;">
-							<col style="width: 25%;">
+							<col style="width: 20%;">
 							<col style="width: 25%;">
 						</colgroup>
 						<tr>
-							<td>회원 비밀번호</td>
+							<td text-align="center">회원 비밀번호</td>
 							<td><input type="password" name="pw"></td>
-							<td class="text-left"><button type="submit">삭제</button></td>
+							<td class="text-center"><button type="submit">삭제</button></td>
 							<td><a href="${pageContext.request.contextPath}/reboard/list">[메인으로 돌아가기]</a></td>
 						</tr>
 					</table>

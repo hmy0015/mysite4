@@ -53,7 +53,7 @@ public class GuestController {
 	// 방명록 삭제
 	@RequestMapping("/delete")
 	public String delete(@ModelAttribute GuestVo guestVo) {
-		System.out.println("[ deleteForm ]");
+		System.out.println("[ delete ]");
 		
 		guestService.delete(guestVo);
 		
