@@ -67,4 +67,14 @@
 		]]>
 	</update>
 	
+   <!-- 게시글 수정 -->
+    <update id="update" parameterType="com.javaex.vo.ReplyBoardVo">
+   		<![CDATA[
+	    	update replyboard
+			set title = #{title},
+			    content = #{content}
+			where no = #{no}
+		]]>
+    </update>
+	
 </mapper>

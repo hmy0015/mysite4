@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.ReplyBoardService;
+import com.javaex.vo.BoardVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Controller
@@ -79,9 +80,29 @@ public class ReplyBoardController {
 	public String reply(@ModelAttribute ReplyBoardVo reboardVo) {
 		System.out.println("[ ReplyBoard - reply ]");
 		
-		System.out.println(reboardVo.toString());
 		reboardService.reply(reboardVo);
 		
+		return "redirect:/reboard/list";
+	}
+	
+	// 답글 수정 폼
+	@RequestMapping("/modifyForm/{no}")
+	public String modifyForm(@PathVariable("no") int no, Model model) {
+		System.out.println("[ ReplyBoard - modifyForm ]");
+		
+		ReplyBoardVo reboardVo = reboardService.read(no);
+		model.addAttribute("vo", reboardVo);
+		
+		return "reboard/modifyForm";
+	}
+	
+	// 답글 수정
+	@RequestMapping("/modify")
+	public String modify(@ModelAttribute ReplyBoardVo reboardVo) {
+		System.out.println("[ ReplyBoard - modify ]");
+		
+		reboardService.modify(reboardVo);
+
 		return "redirect:/reboard/list";
 	}
 }

@@ -58,12 +58,9 @@
 						</thead>
 						<tbody>
 						
-							<%-- <c:set var="i" value="-1"/> --%>
 							<c:forEach items="${rList}" var="vo" varStatus="status">
 							<c:set var="nbsp" value = "&nbsp;&nbsp;"/>
-								<%-- <input type="hidden" value=${i = i + 1}> --%>
 								<tr>
-									<%-- <td>${rList.size() - i}</td> --%>
 									<td>${vo.no}</td>
 									
 									<td class="text-left">
@@ -81,7 +78,7 @@
 									<td>${vo.reg_date}</td>
 									<td>
 										<c:if test="${authUser.no == vo.user_no}">
-											<a href="">[삭제]</a>
+											<a href="${pageContext.request.contextPath}/reboard/deleteForm">[삭제]</a>
 										</c:if>
 									</td>
 								</tr>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.BoardVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Repository
@@ -50,5 +51,12 @@ public class ReplyBoardDao {
 		System.out.println("2. ReplyBoardDao - order_no + 1");
 		
 		return sqlSession.update("reboard.oNoUpdate", replyboardVo);
+	}
+	
+	// dao 게시글 수정
+	public int update(ReplyBoardVo replyboardVo) {
+		System.out.println("2. ReplyBoardDao - 게시글 수정하기");
+		
+		return sqlSession.update("reboard.update", replyboardVo);
 	}
 }

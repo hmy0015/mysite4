@@ -76,7 +76,7 @@
 						</c:if>
 						
 						<c:if test="${authUser.no == vo.user_no}"> <!-- 해당 글의 작성자가 아니라면 보이지 않음 -->
-							<a id="btn_modify" href="">수정</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/reboard/modifyForm/${vo.no}">수정</a>
 						</c:if>
 						
 					</form>

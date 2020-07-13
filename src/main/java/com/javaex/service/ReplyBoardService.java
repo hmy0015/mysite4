@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.ReplyBoardDao;
+import com.javaex.vo.BoardVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Service
@@ -50,5 +51,12 @@ public class ReplyBoardService {
 		replyboardVo.setDepth(depth + 1);
 
 		return reboardDao.replyInsert(replyboardVo);
+	}
+	
+	// Service 게시글 수정
+	public int modify(ReplyBoardVo replyboardVo) {
+		System.out.println("1. ReplyBoardService - 게시글 수정");
+		
+		return reboardDao.update(replyboardVo);
 	}
 }
