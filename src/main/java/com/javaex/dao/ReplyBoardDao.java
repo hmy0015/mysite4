@@ -59,4 +59,9 @@ public class ReplyBoardDao {
 		
 		return sqlSession.update("reboard.update", replyboardVo);
 	}
+	
+	// dao 카운트
+	public int cnt(int no) {
+		return sqlSession.update("reboard.cnt", no);
+	}
 }
