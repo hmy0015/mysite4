@@ -48,4 +48,23 @@
 			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, seq_rBoard_no.nextval, 1, 1)
 		]]>
 	</select>
+	
+	<!-- 답글 등록하기 -->
+	<select id="replyInsert" parameterType="com.javaex.vo.ReplyBoardVo">
+		<![CDATA[
+			INSERT INTO replyboard
+			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, #{group_no}, #{order_no}, #{depth})
+		]]>
+	</select>
+	
+	<!-- order_no + 1 -->
+	<update id="oNoUpdate" parameterType="int">
+		<![CDATA[
+			update replyboard
+			set order_no = order_no + 1
+			where order_no > 1
+			and group_no = #{group_no}
+		]]>
+	</update>
+	
 </mapper>

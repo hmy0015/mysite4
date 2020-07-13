@@ -43,11 +43,11 @@
 					
 						<!-- 답글을 작성한 사용자 정보 -->
 						<input type="hidden" name = "name" value="${authUser.name}">
-						<input type="hidden" name = "uNo" value="${authUser.d}">
+						<input type="hidden" name = "user_no" value="${authUser.no}">
 						
 						<!-- 해당 게시글의 group_no, order_no, depth 정보 -->
-						<input type="hidden" name = "gNo" value="${vo.group_no}">
-						<input type="hidden" name = "oNo" value="${vo.order_no}">
+						<input type="hidden" name = "group_no" value="${vo.group_no}">
+						<input type="hidden" name = "order_no" value="${vo.order_no}">
 						<input type="hidden" name = "depth" value="${vo.depth}">
 					
 						<!-- 제목 -->

@@ -70,7 +70,7 @@
 										<!-- depth 크기에 맞춰 공백 추가 -->
 										<c:forEach begin="2" end="${vo.depth}" step="1" var="depth"> ${nbsp} </c:forEach>
 										
-										<!-- 답글 앞에 "└" 문구를 추가하여 답글임을 표시 -->
+										<!-- 답글 제목 앞에 "└" 문구를 추가하여 답글임을 표시 -->
 										<c:if test="${vo.depth > 1}"> └ </c:if>
 										
 										<!-- 게시글 제목 -->

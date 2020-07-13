@@ -37,5 +37,14 @@ public class ReplyBoardService {
 		
 		return reboardDao.postInsert(replyboardVo);
 	}
-
+	
+	// Service 답글 등록
+	public int reply(ReplyBoardVo replyboardVo) {
+		System.out.println("1. ReplyBoardService - 답글 등록");
+		
+		int gNo = replyboardVo.getGroup_no();
+		reboardDao.oNoUpdate(gNo);
+		
+		return reboardDao.replyInsert(replyboardVo);
+	}
 }
