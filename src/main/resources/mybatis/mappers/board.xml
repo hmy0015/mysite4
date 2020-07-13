@@ -55,10 +55,13 @@
     </update>
     
     <!-- 게시글 삭제 -->
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="map">
     	<![CDATA[
-	    	delete from board
-			where no = #{no}
+	    	delete from board b
+			where b.no = #{no}
+			AND b.user_no in (select u.no
+			                  from users u
+			                  where u.password = #{password})
 		]]>
     </delete>
     

@@ -47,10 +47,14 @@ public class BoardDao {
 	}
 
 	// dao 게시글 삭제
-	public int delete(int no) {
+	public int delete(int no, String pw) {
 		System.out.println("2. BoardDao - 게시글 삭제");
+
+		Map<String, Object> delPostMap = new HashMap<String, Object>();
+		delPostMap.put("no", no);
+		delPostMap.put("password", pw);
 		
-		return sqlSession.delete("board.delete", no);
+		return sqlSession.delete("board.delete", delPostMap);
 	}
 	
 	// dao 카운트

@@ -84,12 +84,23 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	// 게시글 삭제 폼
+	@RequestMapping("/deleteForm/{no}")
+	public String deleteForm(@PathVariable("no") int no, Model model) {
+		System.out.println("[ Board - deleteForm ]");
+
+		model.addAttribute("no", no);
+		
+		return "board/deleteForm";
+	}
+	
 	// 게시글 삭제
 	@RequestMapping("/delete/{no}")
-	public String delete(@PathVariable("no") int no) {
+	public String delete(@PathVariable("no") int no,
+						 @RequestParam("pw") String pw) {
 		System.out.println("[ Board - delete ]");
 		
-		boardService.delete(no);
+		boardService.delete(no, pw);
 		
 		return "redirect:/board/list";
 	}

@@ -46,10 +46,10 @@ public class BoardService {
 	}
 
 	// Service 게시글 삭제
-	public int delete(int no) {
+	public int delete(int no, String pw) {
 		System.out.println("1. BoardService - 게시글 삭제");
 		
-		return boardDao.delete(no);
+		return boardDao.delete(no, pw);
 	}
 
 }
