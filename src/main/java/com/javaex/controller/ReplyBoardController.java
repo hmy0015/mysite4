@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.ReplyBoardService;
 import com.javaex.vo.BoardVo;
@@ -22,10 +23,10 @@ public class ReplyBoardController {
 	
 	// 리스트
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String list(@RequestParam(value="keyword", required = false, defaultValue = "") String keyword, Model model) {
 		System.out.println("[ ReplyBoard - list ]");
 		
-		List<ReplyBoardVo> rList = reboardService.getList();
+		List<ReplyBoardVo> rList = reboardService.getList(keyword);
 		
 		model.addAttribute("rList", rList);
 		

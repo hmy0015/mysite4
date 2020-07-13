@@ -15,12 +15,12 @@ public class ReplyBoardDao {
 	private SqlSession sqlSession;
 
 	// dao 리스트 가져오기
-	public List<ReplyBoardVo> getList() {
+	public List<ReplyBoardVo> getList(String keyword) {
 		System.out.println("2. ReplyBoardDao - 리스트 가져오기");
+
+		String title = "%" + keyword + "%";
 		
-		List<ReplyBoardVo> rList = sqlSession.selectList("reboard.getList");
-		
-		System.out.println(rList);
+		List<ReplyBoardVo> rList = sqlSession.selectList("reboard.getList", title);
 		
 		return rList;
 	}

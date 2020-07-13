@@ -15,10 +15,10 @@ public class ReplyBoardService {
 	private ReplyBoardDao reboardDao;
 
 	// Service 리스트 가져오기
-	public List<ReplyBoardVo> getList() {
+	public List<ReplyBoardVo> getList(String keyword) {
 		System.out.println("1. ReplyBoardService - 리스트 가져오기");
 		
-		List<ReplyBoardVo> rList = reboardDao.getList();
+		List<ReplyBoardVo> rList = reboardDao.getList(keyword);
 		
 		return rList;
 	}
