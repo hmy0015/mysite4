@@ -79,6 +79,7 @@ public class ReplyBoardController {
 	public String reply(@ModelAttribute ReplyBoardVo reboardVo) {
 		System.out.println("[ ReplyBoard - reply ]");
 		
+		System.out.println(reboardVo.toString());
 		reboardService.reply(reboardVo);
 		
 		return "redirect:/reboard/list";

@@ -60,7 +60,7 @@
 						
 							<%-- <c:set var="i" value="-1"/> --%>
 							<c:forEach items="${rList}" var="vo" varStatus="status">
-							<c:set var="nbsp" value = "&nbsp;"/>
+							<c:set var="nbsp" value = "&nbsp;&nbsp;"/>
 								<%-- <input type="hidden" value=${i = i + 1}> --%>
 								<tr>
 									<%-- <td>${rList.size() - i}</td> --%>
@@ -70,8 +70,8 @@
 										<!-- depth 크기에 맞춰 공백 추가 -->
 										<c:forEach begin="2" end="${vo.depth}" step="1" var="depth"> ${nbsp} </c:forEach>
 										
-										<!-- 답글 제목 앞에 "└" 문구를 추가하여 답글임을 표시 -->
-										<c:if test="${vo.depth > 1}"> └ </c:if>
+										<!-- 답글 제목 앞에 "≫" 문구를 추가하여 답글임을 표시 -->
+										<c:if test="${vo.depth > 1}">≫</c:if>
 										
 										<!-- 게시글 제목 -->
 										<a href="${pageContext.request.contextPath}/reboard/read/${vo.no}">${vo.title}</a>

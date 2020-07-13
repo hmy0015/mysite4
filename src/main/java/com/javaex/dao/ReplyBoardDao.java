@@ -35,8 +35,6 @@ public class ReplyBoardDao {
 	public int postInsert(ReplyBoardVo replyboardVo) {
 		System.out.println("2. ReplyBoardDao - 게시글 등록");
 
-		System.out.println(replyboardVo.toString());
-		
 		return sqlSession.insert("reboard.postInsert", replyboardVo);
 	}
 	
@@ -48,9 +46,9 @@ public class ReplyBoardDao {
 	}
 	
 	// order_no + 1
-	public int oNoUpdate(int group_no) {
+	public int oNoUpdate(ReplyBoardVo replyboardVo) {
 		System.out.println("2. ReplyBoardDao - order_no + 1");
 		
-		return sqlSession.update("reboard.oNoUpdate", group_no);
+		return sqlSession.update("reboard.oNoUpdate", replyboardVo);
 	}
 }

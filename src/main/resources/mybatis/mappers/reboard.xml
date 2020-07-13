@@ -58,11 +58,11 @@
 	</select>
 	
 	<!-- order_no + 1 -->
-	<update id="oNoUpdate" parameterType="int">
+	<update id="oNoUpdate" parameterType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			update replyboard
 			set order_no = order_no + 1
-			where order_no > 1
+			where order_no > #{order_no}
 			and group_no = #{group_no}
 		]]>
 	</update>
