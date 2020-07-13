@@ -39,11 +39,21 @@
 
 			<div id="board">
 				<div id="writeForm">
-					<form action="#" method="get">
+					<form action="${pageContext.request.contextPath}/reboard/reply" method="get">
+					
+						<!-- 답글을 작성한 사용자 정보 -->
+						<input type="hidden" name = "name" value="${authUser.name}">
+						<input type="hidden" name = "uNo" value="${authUser.d}">
+						
+						<!-- 해당 게시글의 group_no, order_no, depth 정보 -->
+						<input type="hidden" name = "gNo" value="${vo.group_no}">
+						<input type="hidden" name = "oNo" value="${vo.order_no}">
+						<input type="hidden" name = "depth" value="${vo.depth}">
+					
 						<!-- 제목 -->
 						<div class="form-group">
 							<label class="form-text" for="txt-title">제목</label>
-							<input type="text" id="txt-title" name="" value="" placeholder="답글입니다. 제목을 입력해 주세요.">
+							<input type="text" id="txt-title" name="title" value="" placeholder="답글입니다. 제목을 입력해 주세요.">
 						</div>
 					
 						<!-- 내용 -->

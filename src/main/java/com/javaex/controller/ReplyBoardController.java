@@ -75,4 +75,12 @@ public class ReplyBoardController {
 	}
 	
 	// 답글 등록
+	@RequestMapping("/reply")
+	public String reply(@ModelAttribute ReplyBoardVo reboardVo) {
+		System.out.println("[ ReplyBoard - reply ]");
+		
+		System.out.println(reboardVo.toString());
+		
+		return "";
+	}
 }

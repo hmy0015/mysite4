@@ -18,7 +18,7 @@
 			        r.depth
 			from replyboard r, users u
 			where r.user_no = u.no
-			order by r.no desc
+			order by r.group_no desc, r.order_no
 		]]>
 	</select>
 
