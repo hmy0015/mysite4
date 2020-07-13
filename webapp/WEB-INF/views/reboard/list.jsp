@@ -70,17 +70,33 @@
 										<!-- 답글 제목 앞에 "≫" 문구를 추가하여 답글임을 표시 -->
 										<c:if test="${vo.depth > 1}">≫</c:if>
 										
-										<!-- 게시글 제목 -->
-										<a href="${pageContext.request.contextPath}/reboard/read/${vo.no}">${vo.title}</a>
+										<!-- 삭제 된 게시글일 경우 제목에 링크 연결하지 않음, 아닐 경우 제목에 링크 연결 -->
+										<c:choose>
+											<c:when test="${vo.content == null}"> ${vo.title} </c:when>
+											
+											<c:otherwise>
+												<a href="${pageContext.request.contextPath}/reboard/read/${vo.no}">${vo.title}</a>
+											</c:otherwise>
+										</c:choose>
 									</td>
-									<td>${vo.name}</td>
-									<td>${vo.hit}</td>
-									<td>${vo.reg_date}</td>
-									<td>
-										<c:if test="${authUser.no == vo.user_no}">
-											<a href="${pageContext.request.contextPath}/reboard/deleteForm/${vo.no}">[삭제]</a>
-										</c:if>
-									</td>
+									
+									<!-- 삭제 된 게시글일 경우 no와 제목 이외의 데이터를 표시하지 않음, 아닐 경우 content를 제외하고 모두 표시 -->
+									<c:choose>
+										<c:when test="${vo.content == null}"> 
+											<td></td> <td></td> <td></td> <td></td>
+										</c:when>
+										
+										<c:otherwise>
+											<td>${vo.name}</td>
+											<td>${vo.hit}</td>
+											<td>${vo.reg_date}</td>
+											<td>
+												<c:if test="${authUser.no == vo.user_no}">
+													<a href="${pageContext.request.contextPath}/reboard/deleteForm/${vo.no}">[삭제]</a>
+												</c:if>
+											</td>
+										</c:otherwise>
+									</c:choose>				
 								</tr>
 							</c:forEach>
 						</tbody>

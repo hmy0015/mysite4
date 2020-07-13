@@ -78,7 +78,7 @@
 		]]>
     </update>
     
-	<!-- 카운트 -->
+	<!-- 조회수 카운트 -->
     <update id="cnt" parameterType="int">
 		<![CDATA[
 	    	update replyboard
@@ -87,8 +87,8 @@
 		]]>
     </update>
     
-    <!-- 게시글 삭제 -->
-    <delete id="delete" parameterType="map">
+	<!-- 게시글 삭제 방식 01 - DB에서 해당 게시글의 데이터를 삭제함 -->
+    <delete id="delPost" parameterType="map">
 	    <![CDATA[
 			DELETE FROM replyboard r
 			WHERE no = #{no}
@@ -97,4 +97,18 @@
 			                  where u.password = #{password})
 		]]>
     </delete>
+    
+    <!-- 게시글 삭제 방식 02 - 글 제목을 '삭제 된 게시글'로 표시 -->
+    <update id="delete" parameterType="int">
+		<![CDATA[
+	    	update replyboard
+			set title = '삭제 된 게시물입니다.',
+    			content = null
+			where no = #{no}
+			AND user_no in (select u.no
+                from users u
+                where u.password = #{password})
+		]]>
+    </update>
+    
 </mapper>

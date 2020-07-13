@@ -124,6 +124,10 @@ public class ReplyBoardController {
 						 @RequestParam("pw") String pw) {
 		System.out.println("[ delete ]");
 		
+		// 삭제방식01 - DB에서 해당 게시글의 데이터를 삭제함
+		//reboardService.delPost(no, pw);
+ 
+		// 삭제방식02 - 글 제목을 '삭제 된 게시글'로 표시
 		reboardService.delete(no, pw);
 		
 		return "redirect:/reboard/list";

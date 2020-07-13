@@ -66,7 +66,18 @@ public class ReplyBoardDao {
 		return sqlSession.update("reboard.cnt", no);
 	}
 	
-	// dao 게시글 삭제
+	// dao 게시글 삭제 방식01 - DB에서 해당 게시글의 데이터를 삭제함
+	public int delPost(int no, String pw) {
+		System.out.println("2. ReplyBoardDao - 게시글 삭제");
+		
+		Map<String, Object> delPostMap = new HashMap<String, Object>();
+		delPostMap.put("no", no);
+		delPostMap.put("password", pw);
+		
+		return sqlSession.delete("reboard.delPost", delPostMap);
+	}
+	
+	// dao 게시글 삭제 02 - 글 제목을 '삭제 된 게시글'로 표시
 	public int delete(int no, String pw) {
 		System.out.println("2. ReplyBoardDao - 게시글 삭제");
 		

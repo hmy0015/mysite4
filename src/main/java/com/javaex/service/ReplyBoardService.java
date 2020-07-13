@@ -18,9 +18,9 @@ public class ReplyBoardService {
 	// Service 리스트 가져오기
 	public List<ReplyBoardVo> getList(String keyword) {
 		System.out.println("1. ReplyBoardService - 리스트 가져오기");
-		
+
 		List<ReplyBoardVo> rList = reboardDao.getList(keyword);
-		
+
 		return rList;
 	}
 
@@ -29,21 +29,21 @@ public class ReplyBoardService {
 		System.out.println("1. ReplyBoardService - 게시글 가져오기");
 
 		reboardDao.cnt(no);
-		
+
 		return reboardDao.getPost(no);
 	}
-	
+
 	// Service 게시글 등록
 	public int write(ReplyBoardVo replyboardVo) {
 		System.out.println("1. ReplyBoardService - 게시글 등록");
-		
+
 		return reboardDao.postInsert(replyboardVo);
 	}
-	
+
 	// Service 답글 등록
 	public int reply(ReplyBoardVo replyboardVo) {
 		System.out.println("1. ReplyBoardService - 답글 등록");
-		
+
 		reboardDao.oNoUpdate(replyboardVo);
 
 		// 해당글의 order_no, depth를 1씩 증가
@@ -55,18 +55,25 @@ public class ReplyBoardService {
 
 		return reboardDao.replyInsert(replyboardVo);
 	}
-	
+
 	// Service 게시글 수정
 	public int modify(ReplyBoardVo replyboardVo) {
 		System.out.println("1. ReplyBoardService - 게시글 수정");
-		
+
 		return reboardDao.update(replyboardVo);
 	}
-	
-	// Service 게시글 삭제
-	public int delete(int no, String pw) {
+
+	// Service 게시글 삭제 방식01 - DB에서 해당 게시글의 데이터를 삭제함
+	public int delPost(int no, String pw) {
 		System.out.println("1. ReplyBoardService - 게시글 삭제");
 		
+		return reboardDao.delPost(no, pw);
+	}
+
+	// Service 게시글 삭제 02 - 글 제목을 '삭제 된 게시글'로 표시
+	public int delete(int no, String pw) {
+		System.out.println("1. ReplyBoardService - 게시글 삭제");
+
 		return reboardDao.delete(no, pw);
 	}
 }
