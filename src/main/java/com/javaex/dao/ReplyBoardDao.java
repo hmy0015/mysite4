@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.PagingVO;
 import com.javaex.vo.ReplyBoardVo;
 
 @Repository
@@ -15,13 +16,31 @@ public class ReplyBoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// dao 리스트 가져오기
+	// 총 게시물 개수 구하기
+	public int postNum() {
+		Map<String, Object> map = sqlSession.selectOne("reboard.postNum", 1);
+		int postNum = Integer.parseInt(String.valueOf(map.get("CNT"))); // oracle의 컬럼 타입이 number형이기 때문에 int로 형변환해 줌
+		
+		return postNum;
+	}
+	
+/*	// dao 리스트 가져오기
 	public List<ReplyBoardVo> getList(String keyword) {
 		System.out.println("2. ReplyBoardDao - 리스트 가져오기");
 
 		String title = "%" + keyword + "%";
 		
 		List<ReplyBoardVo> rList = sqlSession.selectList("reboard.getList", title);
+		
+		return rList;
+	}*/
+	
+	// dao 리스트 가져오기
+	public List<ReplyBoardVo> getList(PagingVO list) {
+		System.out.println("2. ReplyBoardDao - 리스트 가져오기");
+
+		System.out.println(list.toString());
+		List<ReplyBoardVo> rList = sqlSession.selectList("reboard.getList", list);
 		
 		return rList;
 	}

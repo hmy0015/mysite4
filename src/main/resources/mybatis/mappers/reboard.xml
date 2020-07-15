@@ -2,9 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reboard">
-
-	<!-- 리스트 가져오기 -->
-	<select id="getList" parameterType="String" resultType="com.javaex.vo.ReplyBoardVo">
+	
+	<select id="getList" parameterType="com.javaex.vo.PagingVO"
+		resultType="com.javaex.vo.ReplyBoardVo">
+		<![CDATA[
+			select rn,
+			        w.no,
+			        w.user_no,
+			        w.name,
+			        w.title,
+			        w.content,
+			        w.hit,
+			        w.reg_date,
+			        w.group_no,
+			        w.order_no,
+			        w.depth,
+			        w.state
+			from ( select rownum rn,
+			                o.no,
+			                o.user_no,
+			                o.name,
+			                o.title,
+			                o.content,
+			                o.hit,
+			                o.reg_date,
+			                o.group_no,
+			                o.order_no,
+			                o.depth,
+			                o.state
+			        from ( select r.no,
+			                      r.user_no,
+			                      u.name,
+			                      r.title,
+			                      r.content,
+			                      r.hit,
+			                      to_char(r.reg_date,'yyyy-mm-dd hh24:mi') reg_date,
+			                      r.group_no,
+			                      r.order_no,
+			                      r.depth,
+			                      r.state
+			                from replyboard r, users u
+			                where r.user_no = u.no
+			                order by r.group_no desc, r.order_no
+			              ) o
+			        ) w
+			where rn >= #{startNum} and rn <= #{endNum}
+		]]>
+	</select>
+	
+	<!-- 총 게시물 개수 구하기 -->
+	<select id="postNum" resultType="map">
+		<![CDATA[
+			select count(*) as cnt
+			from replyboard
+		]]>
+	</select>
+	
+	<!-- 
+	<select id="getList" parameterType="String"
+		resultType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			select  r.no,
 			        r.user_no,
@@ -22,10 +78,11 @@
 			and r.title like #{title}
 			order by r.group_no desc, r.order_no
 		]]>
-	</select>
+	</select> -->
 
 	<!-- 게시글 가져오기 -->
-	<select id="getPost" parameterType="int" resultType="com.javaex.vo.ReplyBoardVo">
+	<select id="getPost" parameterType="int"
+		resultType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			select  r.no,
 			        r.user_no,
@@ -42,25 +99,28 @@
 			and r.no = #{no}
 		]]>
 	</select>
-	
+
 	<!-- 게시글 등록하기 -->
-	<select id="postInsert" parameterType="com.javaex.vo.ReplyBoardVo">
+	<select id="postInsert"
+		parameterType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			INSERT INTO replyboard
 			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, seq_rBoard_no.nextval, 1, 1, null)
 		]]>
 	</select>
-	
+
 	<!-- 답글 등록하기 -->
-	<select id="replyInsert" parameterType="com.javaex.vo.ReplyBoardVo">
+	<select id="replyInsert"
+		parameterType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			INSERT INTO replyboard
 			VALUES(seq_rBoard_no.nextval, #{user_no}, #{title}, #{content}, 0, sysdate, #{group_no}, #{order_no}, #{depth}, null)
 		]]>
 	</select>
-	
+
 	<!-- order_no + 1 -->
-	<update id="oNoUpdate" parameterType="com.javaex.vo.ReplyBoardVo">
+	<update id="oNoUpdate"
+		parameterType="com.javaex.vo.ReplyBoardVo">
 		<![CDATA[
 			update replyboard
 			set order_no = order_no + 1
@@ -68,28 +128,28 @@
 			and group_no = #{group_no}
 		]]>
 	</update>
-	
-   <!-- 게시글 수정 -->
-    <update id="update" parameterType="com.javaex.vo.ReplyBoardVo">
+
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="com.javaex.vo.ReplyBoardVo">
    		<![CDATA[
 	    	update replyboard
 			set title = #{title},
 			    content = #{content}
 			where no = #{no}
 		]]>
-    </update>
-    
+	</update>
+
 	<!-- 조회수 카운트 -->
-    <update id="cnt" parameterType="int">
+	<update id="cnt" parameterType="int">
 		<![CDATA[
 	    	update replyboard
 			set hit = hit + 1
 			where no = #{no}
 		]]>
-    </update>
-    
+	</update>
+
 	<!-- 게시글 삭제 방식 01 - DB에서 해당 게시글의 데이터를 삭제함 -->
-    <delete id="delPost" parameterType="map">
+	<delete id="delPost" parameterType="map">
 	    <![CDATA[
 			DELETE FROM replyboard r
 			WHERE no = #{no}
@@ -97,10 +157,10 @@
 			                  from users u
 			                  where u.password = #{password})
 		]]>
-    </delete>
-    
-    <!-- 게시글 삭제 방식 02 - 글 제목을 '삭제 된 게시글'로 표시 -->
-    <update id="delete" parameterType="int">
+	</delete>
+
+	<!-- 게시글 삭제 방식 02 - 글 제목을 '삭제 된 게시글'로 표시 -->
+	<update id="delete" parameterType="int">
 		<![CDATA[
 	    	update replyboard
 			set state = 'del'
@@ -109,6 +169,16 @@
 			                from users u
 			                where u.password = #{password})
 		]]>
-    </update>
-    
+	</update>
+
+	<select id="endNum" resultType="com.javaex.vo.PagingVO">
+    	<![CDATA[
+	    	update replyboard
+			set state = 'del'
+			where no = #{no}
+			AND user_no in (select u.no
+			                from users u
+			                where u.password = #{password})
+		]]>
+	</select>
 </mapper>

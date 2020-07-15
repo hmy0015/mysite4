@@ -22,14 +22,37 @@ public class ReplyBoardController {
 	@Autowired
 	private ReplyBoardService reboardService;
 	
-	// 리스트
+	
+/*	// 리스트
 	@RequestMapping("/list")
-	public String list(@RequestParam(value="keyword", required = false, defaultValue = "") String keyword, Model model) {
+	public String list (@RequestParam(value="keyword", required = false, defaultValue = "") String keyword,
+						Model model) {
 		System.out.println("[ ReplyBoard - list ]");
+	
+		int pageNum = reboardService.postNum();
 		
 		List<ReplyBoardVo> rList = reboardService.getList(keyword);
 		
 		model.addAttribute("rList", rList);
+		model.addAttribute("page", pageNum);
+		
+		return "reboard/list";
+	}*/
+	
+	// 리스트
+	@RequestMapping("/list")
+	public String list (@RequestParam(value="page", required = false, defaultValue = "1") int page,
+						@RequestParam(value="keyword", required = false, defaultValue = "") String keyword,
+						Model model) {
+		System.out.println("[ ReplyBoard - list ]");
+	
+		int pageNum = reboardService.postNum();
+		System.out.println(keyword);
+		
+		List<ReplyBoardVo> rList = reboardService.getList(page);
+		
+		model.addAttribute("rList", rList);
+		model.addAttribute("page", pageNum);
 		
 		return "reboard/list";
 	}
