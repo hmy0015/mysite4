@@ -18,9 +18,14 @@ public class ReplyBoardDao {
 
 	// 총 게시물 개수 구하기
 	public int postNum(String keyword) {
-		Map<String, Object> map = sqlSession.selectOne("reboard.postNum", keyword);
+		// parameterType을 map으로 보냄
+		Map<String, Object> kMap = new HashMap<String, Object>();
+		kMap.put("keyword", keyword);
+
+		// resultType을 map으로 받음
+		Map<String, Object> map = sqlSession.selectOne("reboard.postNum", kMap);
 		int postNum = Integer.parseInt(String.valueOf(map.get("CNT"))); // oracle의 컬럼 타입이 number형이기 때문에 int로 형변환해 줌
-		
+
 		return postNum;
 	}
 	

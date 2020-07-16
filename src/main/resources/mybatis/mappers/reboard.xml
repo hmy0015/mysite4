@@ -58,13 +58,14 @@
 	</select>
 
 	<!-- 총 게시물 개수 구하기 -->
-	<select id="postNum" parameterType="String" resultType="map">
+	<select id="postNum" parameterType="map" resultType="map">
 		<![CDATA[
 			select count(*) as CNT
 			from replyboard
 			]]>
-			<if test="value != null">
+			<if test="keyword != null and keyword != ''">
 				where title like '%' || #{keyword} || '%'
+                and state is null
 			</if>
 	</select>
 
