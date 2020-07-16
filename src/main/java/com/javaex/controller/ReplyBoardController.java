@@ -8,12 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.ReplyBoardService;
-import com.javaex.vo.BoardVo;
-import com.javaex.vo.GuestVo;
 import com.javaex.vo.ReplyBoardVo;
 
 @Controller
@@ -22,37 +19,19 @@ public class ReplyBoardController {
 	@Autowired
 	private ReplyBoardService reboardService;
 	
-	
-/*	// 리스트
-	@RequestMapping("/list")
-	public String list (@RequestParam(value="keyword", required = false, defaultValue = "") String keyword,
-						Model model) {
-		System.out.println("[ ReplyBoard - list ]");
-	
-		int pageNum = reboardService.postNum();
-		
-		List<ReplyBoardVo> rList = reboardService.getList(keyword);
-		
-		model.addAttribute("rList", rList);
-		model.addAttribute("page", pageNum);
-		
-		return "reboard/list";
-	}*/
-	
 	// 리스트
-	@RequestMapping("/list")
+	@RequestMapping("/list") // 파라미터가 없을 경우 page는 1, keyword는 null로 설정
 	public String list (@RequestParam(value="page", required = false, defaultValue = "1") int page,
-						@RequestParam(value="keyword", required = false, defaultValue = "") String keyword,
+						@RequestParam(value="keyword", required = false) String keyword,
 						Model model) {
 		System.out.println("[ ReplyBoard - list ]");
-	
-		int pageNum = reboardService.postNum();
-		System.out.println(keyword);
-		
-		List<ReplyBoardVo> rList = reboardService.getList(page);
+
+		List<ReplyBoardVo> rList = reboardService.getList(page, keyword); // 리스트 가져오기
+		int pageNum = reboardService.postNum(keyword); // 페이징 할 숫자 구하기
 		
 		model.addAttribute("rList", rList);
 		model.addAttribute("page", pageNum);
+		model.addAttribute("keyword", keyword);
 		
 		return "reboard/list";
 	}

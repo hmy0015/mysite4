@@ -15,37 +15,23 @@ public class ReplyBoardService {
 	private ReplyBoardDao reboardDao;
 	
 	// Service 페이징 할 숫자 구하기
-	public int postNum() {
+	public int postNum(String keyword) {
 		
-		int postNum = reboardDao.postNum(); // 게시글의 총 개수를 구함
-		int page = (int)Math.ceil(postNum/4.0); // => (doublic -> int 형변환)반올림(총 게시물 개수/출력시킬 게시물 개수)
-				
+		int postNum = reboardDao.postNum(keyword); // 게시글의 총 개수를 구함
+		int page = (int)Math.ceil(postNum/4.0); // => (double -> int 형변환)반올림(총 게시물 개수/출력시킬 게시물 개수)
+		
 		return page;
 	}
-	
-/*	// Service 리스트 가져오기
-	public List<ReplyBoardVo> getList(String keyword) {
-		System.out.println("1. ReplyBoardService - 리스트 가져오기");
 
-		List<ReplyBoardVo> rList = reboardDao.getList(keyword);
-
-		return rList;
-	}*/
-	
 	// 리스트 가져오기
-	public List<ReplyBoardVo> getList(int page) {
+	public List<ReplyBoardVo> getList(int page, String keyword) {
 		System.out.println("1. ReplyBoardService - 리스트 가져오기");
 
-		int start = (page * 4) - 3;
-		int end = start + 3;
-		
-		PagingVO list = new PagingVO();
-		list.setStartNum(start);
-		list.setEndNum(end);
-		
-		System.out.println(list.toString());
-		
-		List<ReplyBoardVo> rList = reboardDao.getList(list);
+		int startNum = (page * 4) - 3; 
+		int endNum = startNum + 3;
+
+		PagingVO listNum = new PagingVO(startNum, endNum, keyword);
+		List<ReplyBoardVo> rList = reboardDao.getList(listNum);
 		
 		return rList;
 	}

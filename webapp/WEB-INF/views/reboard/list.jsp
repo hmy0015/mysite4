@@ -41,6 +41,7 @@
 				<div id="list">
 					<form action="${pageContext.request.contextPath}/reboard/list" method="">
 						<div class="form-group text-right">
+							<input type="hidden" name="page" value="1">
 							<input type="text" name="keyword" value="">
 							<button type="submit" id=btn_search>검색</button>
 						</div>
@@ -106,7 +107,7 @@
 						<ul>
 							<li><a href="">◀</a></li>
 							<c:forEach begin="1" end="${page}" step="1" var="page">
-								<li><a href="${pageContext.request.contextPath}/reboard/list?page=${page}">${page}</a></li>
+								<li><a href="${pageContext.request.contextPath}/reboard/list?page=${page}&keyword=${keyword}">${page}</a></li>
 							</c:forEach>
 							<li><a href="">▶</a></li>
 						</ul>
