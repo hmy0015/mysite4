@@ -23,7 +23,7 @@ public class ReplyBoardService {
 		return page;
 	}
 
-	// 리스트 가져오기
+	// 리스트 가져오기 및 검색
 	public List<ReplyBoardVo> getList(int page, String keyword) {
 		System.out.println("1. ReplyBoardService - 리스트 가져오기");
 

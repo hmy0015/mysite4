@@ -19,7 +19,7 @@ public class ReplyBoardController {
 	@Autowired
 	private ReplyBoardService reboardService;
 	
-	// 리스트
+	// 리스트 출력 및 검색
 	@RequestMapping("/list") // 파라미터가 없을 경우 page는 1, keyword는 null로 설정
 	public String list (@RequestParam(value="page", required = false, defaultValue = "1") int page,
 						@RequestParam(value="keyword", required = false) String keyword,

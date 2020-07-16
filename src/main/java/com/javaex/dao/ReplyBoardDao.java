@@ -16,7 +16,7 @@ public class ReplyBoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 총 게시물 개수 구하기
+	// 총 게시물 개수 구하기 - 코드 더 간결하게 수정해볼 것
 	public int postNum(String keyword) {
 		// parameterType을 map으로 보냄
 		Map<String, Object> kMap = new HashMap<String, Object>();
@@ -29,7 +29,7 @@ public class ReplyBoardDao {
 		return postNum;
 	}
 	
-	// dao 리스트 가져오기
+	// dao 리스트 가져오기 및 검색
 	public List<ReplyBoardVo> getList(PagingVO list) {
 		System.out.println("2. ReplyBoardDao - 리스트 가져오기");
 
