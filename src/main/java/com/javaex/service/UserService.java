@@ -39,4 +39,19 @@ public class UserService {
 		
 		return userDao.update(userVo);
 	}
+	
+	// service 입력한 아이디 값과 중복되는 데이터가 있는 지 검사
+	public boolean checkId(String id) {
+		System.out.println("2. UserService - 중복체크");
+		UserVo userVo = userDao.checkId(id);
+		boolean result = true;
+		
+		if(userVo == null) {
+			result = true;
+		} else {
+			result = false;
+		}
+		
+		return result;
+	}
 }

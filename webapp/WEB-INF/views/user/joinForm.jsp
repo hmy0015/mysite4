@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
@@ -43,9 +44,12 @@
 						<div class="form-group">
 							<label class="form-text" for="input-uid">아이디</label> 
 							<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-							<button type="button" id="">중복체크</button>
+							<button type="button" id="btnIdCheck">중복체크</button>
 						</div>
-
+						
+						<!-- 중복검사 후 메시지 출력 -->
+						<span id="checkMsg"></span>
+						
 						<!-- 비밀번호 -->
 						<div class="form-group">
 							<label class="form-text" for="input-pass">패스워드</label> 
@@ -100,4 +104,43 @@
 
 </body>
 
+<script type="text/javascript">
+	$("#btnIdCheck").on("click", function() {
+		var uId = $("#input-uid").val();
+		console.log(uId);
+		
+		// 객체 생성 (여러 개의 파라미터를 보낼 때 용이)
+		var userInfo = {
+				userId: uId
+		}
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/user/idcheck",		
+			type : "post",
+			/* contentType : "application/json", */
+			data : userInfo,
+
+			dataType : "json",
+			success : function(userVo){ // function(변수명:컨트롤러에서 넘어오는 거랑 상관없이 새로 변수 만드는 거임)
+				
+				/*성공 시 처리해야될 코드 작성*/
+				
+				console.log(userVo);
+				if(userVo == true) {
+					$("#checkMsg").html("&emsp;<font color='blue'>* 사용 가능한 아이디입니다.</font>");
+				}
+				else {
+					console.log($("#input-uid").val(""));
+					$("#checkMsg").html("&emsp;&emsp;<font color='red'>* 사용할 수 없는 아이디입니다.</font>");
+				}
+			},
+			error : function(XHR, status, error) {
+				/* 실패 시 처리해야될 코드 작성*/
+
+				console.error(status + " : " + error);
+			}
+		});
+
+	});
+</script>
 </html>

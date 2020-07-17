@@ -38,4 +38,10 @@ public class UserDao {
 		
 		return sqlSession.update("user.update", userVo);
 	}
+	
+	// dao 입력한 아이디 값과 중복되는 데이터가 있는 지 검사
+	public UserVo checkId(String id) {
+		System.out.println("3. UserDao - 중복체크");
+		return sqlSession.selectOne("user.selectById", id);
+	}
 }

@@ -17,8 +17,7 @@
 			<c:when test="${empty authUser}">
 				<!-- 로그인 실패 시 -->
 				<ul>
-					<li><a
-						href="${pageContext.request.contextPath}/user/loginForm">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/loginForm">로그인</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/joinForm">회원가입</a></li>
 				</ul>
 			</c:when>
