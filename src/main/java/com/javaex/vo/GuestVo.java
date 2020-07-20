@@ -2,7 +2,7 @@ package com.javaex.vo;
 
 public class GuestVo {
 	private int no;
-	private String name, pw, content, date;
+	private String name, pw, content, reg_date;
 
 	public GuestVo() {
 	}
@@ -13,11 +13,11 @@ public class GuestVo {
 		this.content = content;
 	}
 
-	public GuestVo(int no, String name, String content, String date) {
+	public GuestVo(int no, String name, String content, String reg_date) {
 		this.no = no;
 		this.name = name;
 		this.content = content;
-		this.date = date;
+		this.reg_date = reg_date;
 	}
 
 	public int getNo() {
@@ -52,16 +52,19 @@ public class GuestVo {
 		this.content = content;
 	}
 
-	public String getDate() {
-		return date;
+	public String getReg_date() {
+		return reg_date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
 	}
 
 	@Override
 	public String toString() {
-		return "GuestBookVo [no=" + no + ", name=" + name + ", content=" + content + ", date=" + date + "]";
+		return "GuestVo [no=" + no + ", name=" + name + ", pw=" + pw + ", content=" + content + ", reg_date=" + reg_date
+				+ "]";
 	}
+
+
 }

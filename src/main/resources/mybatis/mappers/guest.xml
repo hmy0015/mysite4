@@ -18,7 +18,7 @@
     <insert id="insert" parameterType="com.javaex.vo.GuestVo">
 		<![CDATA[
 			INSERT INTO guestbook
-			VALUES(SEQ_NO.nextval, #{name}, #{pw}, #{content}, sysdate)
+			VALUES(seq_guest_no.nextval, #{name}, #{pw}, #{content}, sysdate)
 		]]>
     </insert>
     
@@ -30,4 +30,28 @@
 			AND password = #{pw} 
 		]]>
     </delete>
+    
+    <!-- 방명록 추가(ajax) -->
+    <insert id="insertSelectKey" parameterType="com.javaex.vo.GuestVo">
+	    <selectKey keyProperty="no" resultType="int" order="BEFORE">	
+			select seq_guest_no.nextval from dual
+		</selectKey>
+    
+		<![CDATA[
+			INSERT INTO guestbook
+			VALUES(#{no}, #{name}, #{pw}, #{content}, sysdate)
+		]]>
+    </insert>
+    
+    <!-- 등록 된 게시글의 정보 가져오기 (ajax) -->
+	<select id="selectByNo" parameterType="int" resultType="com.javaex.vo.GuestVo">
+		<![CDATA[
+			select  no,
+					name,
+					content,
+					reg_date
+			from guestbook
+			where no = #{no}
+		]]>
+    </select>
 </mapper>

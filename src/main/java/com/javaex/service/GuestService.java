@@ -35,4 +35,16 @@ public class GuestService {
 		
 		return guestDao.delete(guestVo);
 	}
+	
+	// Service 방명록 추가 (ajax)
+	public GuestVo addGuest(GuestVo guestVo) {
+		System.out.println("1. GuestService - ajax방명록 추가");
+		
+		// 저장
+		guestDao.insertSelectKey(guestVo);
+		int no = guestVo.getNo(); // 해당 게시글의 no값 가져오기
+		
+		// 저장한 데이터 가져오기
+		return guestDao.selectByNo(no);
+	}
 }
