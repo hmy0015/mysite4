@@ -184,7 +184,8 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/api/guestbook/write",		
 			type : "post",
-			data : guestVo,
+			contentType: "application/json",
+			data : JSON.stringify(guestVo), /* json 형식으로 변형 */
 
 			dataType : "json",
 			success : function(guestVo){ /*성공시 처리해야될 코드 작성*/

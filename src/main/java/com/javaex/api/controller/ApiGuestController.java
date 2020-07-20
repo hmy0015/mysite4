@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,7 +33,7 @@ public class ApiGuestController {
 	// 방명록 등록
 	@ResponseBody
 	@RequestMapping("/write")
-	public GuestVo write(@ModelAttribute GuestVo guestVo) {
+	public GuestVo write(@RequestBody GuestVo guestVo) {
 		System.out.println("[ write ]");
 		System.out.println(guestVo.toString());
 		
