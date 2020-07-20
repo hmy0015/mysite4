@@ -47,4 +47,13 @@ public class GuestService {
 		// 저장한 데이터 가져오기
 		return guestDao.selectByNo(no);
 	}
+
+	// Service 방명록 삭제 (ajax)
+	public int delPost(GuestVo guestVo) {
+		System.out.println("1. GuestService - 방명록 삭제");
+		
+		int count = guestDao.delPost(guestVo);
+		
+		return count;
+	}
 }

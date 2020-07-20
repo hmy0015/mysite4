@@ -41,4 +41,16 @@ public class ApiGuestController {
 		
 		return vo;
 	}
+
+	// 방명록 삭제
+	@ResponseBody
+	@RequestMapping("/delete")
+	public int delete(@ModelAttribute GuestVo guestVo) {
+		System.out.println("[ delete ]");
+		System.out.println(guestVo.toString());
+
+		int count = guestService.delete(guestVo);
+
+		return count;
+	}
 }

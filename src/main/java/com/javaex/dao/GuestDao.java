@@ -32,7 +32,7 @@ public class GuestDao {
 	// dao 방명록 삭제
 	public int delete(GuestVo guestVo) {
 		System.out.println("2. GuestDao - 방명록 삭제");
-
+		
 		return sqlSession.delete("guest.delete", guestVo);
 	}
 	
@@ -48,5 +48,14 @@ public class GuestDao {
 		System.out.println("2. GuestDao - ajax 등록 된 게시글 정보 가져오기");
 		
 		return sqlSession.selectOne("guest.selectByNo", no);
+	}
+	
+	// dao 방명록 삭제 (ajax)
+	public int delPost(GuestVo guestVo) {
+		System.out.println("2. GuestDao - 방명록 삭제");
+		
+		int count = sqlSession.delete("guest.delete", guestVo);
+		
+		return count;
 	}
 }
