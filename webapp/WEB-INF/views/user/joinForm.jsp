@@ -82,6 +82,8 @@
 							<label for="chk-agree">서비스 약관에 동의합니다.</label> 
 						</div>
 						
+						<span><font color='red'>* 약관동의가 필요합니다.</font></span>
+						
 						<!-- 버튼영역 -->
 		                <div class="button-area">
 		                    <button type="submit" id="btn-submit">회원가입</button>
@@ -125,7 +127,6 @@
 				
 				/*성공 시 처리해야될 코드 작성*/
 				
-				console.log(userVo);
 				if(userVo == true) {
 					$("#checkMsg").html("&emsp;<font color='blue'>* 사용 가능한 아이디입니다.</font>");
 				}

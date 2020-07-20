@@ -40,7 +40,7 @@
 		]]>
 	</update>
 	
-	<!-- 중복체크 -->	
+	<!-- 중복체크 -->
 	<select id="selectById" parameterType="String" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select id,

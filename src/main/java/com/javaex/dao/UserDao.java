@@ -43,5 +43,5 @@ public class UserDao {
 	public UserVo checkId(String id) {
 		System.out.println("3. UserDao - 중복체크");
 		return sqlSession.selectOne("user.selectById", id);
-	}
+	} 
 }
