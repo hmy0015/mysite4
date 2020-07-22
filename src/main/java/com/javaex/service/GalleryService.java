@@ -45,11 +45,11 @@ public class GalleryService {
 		System.out.println("확장자 : " + exName);
 
 		// 업로드 된 파일의 사이즈 (fileSize)
-		long fileSize = image.getSize();
+		long fileSize = image.getSize(); // getSize의 자료형은 long임
 		System.out.println("파일 사이즈 : " + fileSize);
 
 		// 하드에 저장 될 파일의 이름 (saveName)
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName; // 현재 시간 + 영문과 숫자를 조합한 랜덤 이름 + 확장자
 		System.out.println("저장명 : " + saveName);
 
 		// 하드에 저장 된 파일의 경로 (filePath)
@@ -70,7 +70,7 @@ public class GalleryService {
 			e.printStackTrace();
 		}
 
-		// 이미지 정보 vo에 담기
+		// 이미지 정보 vo에 담기 (vo에 해당 파라미터 개수와 일치하는 생성자가 있어야 함)
 		GalleryVo vo = new GalleryVo(galleryVo.getUser_no(), galleryVo.getContent(), filePath, orgName, saveName,
 				fileSize);
 
