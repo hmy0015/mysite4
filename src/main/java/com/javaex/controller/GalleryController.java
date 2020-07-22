@@ -1,7 +1,10 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +18,13 @@ public class GalleryController {
 	@Autowired
 	private GalleryService gService;
 
+	// 갤러리 리스트
 	@RequestMapping("/list")
-	public String gallery() {
+	public String gallery(Model model) {
 		System.out.println("[ list ]");
+		
+		List<GalleryVo> imageList = gService.getList();
+		model.addAttribute("iList", imageList);
 		
 		return "gallery/list";
 	}

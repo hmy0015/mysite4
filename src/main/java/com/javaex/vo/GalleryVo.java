@@ -3,6 +3,7 @@ package com.javaex.vo;
 public class GalleryVo {
 	private int no;
 	private int user_no;
+	private String name;
 	private String content;
 	private String filePath;
 	private String orgName;
@@ -16,7 +17,6 @@ public class GalleryVo {
 		this.content = content;
 		this.orgName = orgName;
 	}
-
 	
 	public GalleryVo(int user_no, String content, String filePath, String orgName, String saveName, long fileSize) {
 		this.user_no = user_no;
@@ -27,10 +27,11 @@ public class GalleryVo {
 		this.fileSize = fileSize;
 	}
 
-	public GalleryVo(int no, int user_no, String content, String filePath, String orgName, String saveName,
+	public GalleryVo(int no, int user_no, String name, String content, String filePath, String orgName, String saveName,
 			long fileSize) {
 		this.no = no;
 		this.user_no = user_no;
+		this.name = name;
 		this.content = content;
 		this.filePath = filePath;
 		this.orgName = orgName;
@@ -52,6 +53,14 @@ public class GalleryVo {
 
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContent() {
@@ -90,14 +99,15 @@ public class GalleryVo {
 		return fileSize;
 	}
 
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 
 	@Override
 	public String toString() {
-		return "GalleryVo [no=" + no + ", user_no=" + user_no + ", content=" + content + ", filePath=" + filePath
-				+ ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + "]";
+		return "[no=" + no + ", user_no=" + user_no + ", name=" + name + ", content=" + content
+				+ ", filePath=" + filePath + ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize="
+				+ fileSize + "]";
 	}
-	
+
 }

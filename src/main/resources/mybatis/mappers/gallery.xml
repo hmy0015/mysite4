@@ -10,4 +10,21 @@
 			VALUES(seq_gallery_no.nextval, #{user_no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
 		]]>
 	</insert>
+	
+	<!-- 이미지 리스트 -->
+	<select id="getList" resultType="com.javaex.vo.GalleryVo">
+		<![CDATA[
+			select  g.no,
+			        g.user_no,
+			        u.name,
+			        g.content,
+			        g.filePath,
+			        g.orgName,
+			        g.saveName,
+			        g.fileSize
+			from gallery g, users u
+			where g.user_no = u.no
+			order by g.no desc
+		]]>
+	</select>
 </mapper>

@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,14 @@ public class GalleryService {
 										filePath, orgName, saveName, fileSize);
 	
 		return gDao.insert(vo);
+	}
+
+	// service 이미지 리스트
+	public List<GalleryVo> getList() {
+		System.out.println("1. service 파일 리스트");
+		
+		List<GalleryVo> imageList = gDao.getList();
+		
+		return imageList;
 	}
 }
