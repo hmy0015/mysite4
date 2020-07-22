@@ -27,4 +27,20 @@
 			order by g.no desc
 		]]>
 	</select>
+	
+	<!-- 이미지 삭제 -->
+	<delete id="delImage" parameterType="int">
+		<![CDATA[
+			DELETE gallery
+			WHERE no = #{no}
+		]]>
+	</delete>
+	
+	<select id="getSaveName" parameterType="int" resultType="map">
+		<![CDATA[
+			select saveName
+			from gallery
+			where no = #{no}
+		]]>
+	</select>
 </mapper>

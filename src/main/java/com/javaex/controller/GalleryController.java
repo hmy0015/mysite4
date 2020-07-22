@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.GalleryService;
 import com.javaex.vo.GalleryVo;
+import com.javaex.vo.GuestVo;
 
 @Controller
 @RequestMapping("/gallery")
@@ -44,5 +48,15 @@ public class GalleryController {
 		gService.imageUpload(galleryVo, image);
 		
 		return "redirect:/gallery/list";
+	}
+
+	// 이미지 저장명 가져오기
+	@ResponseBody
+	@RequestMapping("/getSaveName")
+	public String getSaveName(@RequestParam("no") int no) {
+		
+		String saveName = gService.getSaveName(no);
+		
+		return saveName;
 	}
 }

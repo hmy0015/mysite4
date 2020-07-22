@@ -56,7 +56,7 @@
 						
 						<c:forEach items="${iList}" var="vo">
 							<li>
-								<div class="view" >
+								<div class="view" data-imageNo="${vo.no}">
 									<img class="imgItem" src="${pageContext.request.contextPath}/upload/${vo.saveName}">
 									<div class="imgWriter">작성자 : <strong>${vo.name}</strong></div>
 								</div>
@@ -79,8 +79,6 @@
 
 	</div>
 	<!-- //wrap -->
-
-	
 		
 	<!-- 이미지등록 팝업(모달)창 -->
 	<div class="modal fade" id="addModal">
@@ -114,8 +112,6 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	
-
-
 	<!-- 이미지보기 팝업(모달)창 -->
 	<div class="modal fade" id="viewModal">
 		<div class="modal-dialog" >
@@ -133,6 +129,8 @@
 					<div class="formgroup">
 						<p id="viewModelContent"></p>
 					</div>
+					
+					<input type="hidden" name="iNo" value="" id="iNo">
 					
 				</div>
 				<form method="" action="">
@@ -154,10 +152,38 @@
 <script type="text/javascript">
 // $("#id").hide(); // 숨김 처리
 // $("#id").show(); // 보임
+
+// 업로드 창 보기
 $("#btnImgUpload").on("click", function() {
 	console.log("이미지 업로드 버튼 클릭");
 	$("#addModal").modal(); // 모달창 열기
 });
+
+// 이미지 보기
+$("#viewArea").on("click", "div", function() {
+	console.log("이미지 클릭");
+	
+	var no = $(this).data("imageno"); // 해당 게시물의 no값 받아오기
+	$("#iNo").val(no);
+	
+	$("#viewModal").modal(); // 모달창 열기
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/gallery/getSaveName",		
+		type : "post",
+		data : {no: no},
+
+		dataType : "json",
+		success : function(saveName){ /*성공시 처리해야될 코드 작성*/
+			var url = "${pageContext.request.contextPath}/upload/" + saveName;
+			$("#viewModelImg").attr("src", url);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+});
+
 </script>
 
 

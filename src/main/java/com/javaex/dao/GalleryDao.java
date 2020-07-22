@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,15 @@ public class GalleryDao {
 		List<GalleryVo> imageList = sqlSession.selectList("gallery.getList");
 		
 		return imageList;
+	}
+	
+	// dao 이미지 저장명 가져오기
+	public String getSaveName(int no) {
+		System.out.println("2. Dao 이미지 url 가져오기");
+		
+		Map<String, Object> gMap = sqlSession.selectOne("gallery.getSaveName", no);
+		String saveName = (String) gMap.get("SAVENAME");
+		
+		return saveName;
 	}
 }

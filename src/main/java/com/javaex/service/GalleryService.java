@@ -76,4 +76,11 @@ public class GalleryService {
 		
 		return imageList;
 	}
+
+	// service 이미지 저장명 가져오기
+	public String getSaveName(int no) {
+		System.out.println("1. service 이미지 url 가져오기");
+		
+		return gDao.getSaveName(no);
+	}
 }

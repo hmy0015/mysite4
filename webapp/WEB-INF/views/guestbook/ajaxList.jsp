@@ -114,7 +114,7 @@
 		console.log("리스트 지역 클릭");
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음
 		
-		var $this = $(this)
+		var $this = $(this);
 		var no = $this.data("delno");
 		console.log(no);
 
