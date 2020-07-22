@@ -3,14 +3,6 @@
 
 <mapper namespace="gallery">
 	
-	<!-- 이미지 업로드 -->
-	<insert id="insert" parameterType="com.javaex.vo.GalleryVo">
-		<![CDATA[
-			INSERT INTO gallery
-			VALUES(seq_gallery_no.nextval, #{user_no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
-		]]>
-	</insert>
-	
 	<!-- 이미지 리스트 -->
 	<select id="getList" resultType="com.javaex.vo.GalleryVo">
 		<![CDATA[
@@ -27,6 +19,14 @@
 			order by g.no desc
 		]]>
 	</select>
+	
+	<!-- 이미지 업로드 -->
+	<insert id="insert" parameterType="com.javaex.vo.GalleryVo">
+		<![CDATA[
+			INSERT INTO gallery
+			VALUES(seq_gallery_no.nextval, #{user_no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
+		]]>
+	</insert>
 	
 	<!-- 이미지 삭제 -->
 	<delete id="delete" parameterType="int">

@@ -19,6 +19,15 @@ public class GalleryService {
 	@Autowired
 	private GalleryDao gDao;
 
+	// service 이미지 리스트
+	public List<GalleryVo> getList() {
+		System.out.println("1. service 파일 리스트");
+
+		List<GalleryVo> imageList = gDao.getList();
+
+		return imageList;
+	}
+
 	// service 이미지 업로드
 	public int imageUpload(GalleryVo galleryVo, MultipartFile image) {
 		System.out.println("1. service 파일 업로드");
@@ -66,15 +75,6 @@ public class GalleryService {
 				fileSize);
 
 		return gDao.insert(vo);
-	}
-
-	// service 이미지 리스트
-	public List<GalleryVo> getList() {
-		System.out.println("1. service 파일 리스트");
-
-		List<GalleryVo> imageList = gDao.getList();
-
-		return imageList;
 	}
 
 	// service 이미지 삭제
