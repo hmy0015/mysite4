@@ -107,7 +107,19 @@
 						<ul>
 							<li><a href="">◀</a></li>
 							<c:forEach begin="1" end="${page}" step="1" var="page">
-								<li><a href="${pageContext.request.contextPath}/reboard/list?page=${page}&keyword=${keyword}">${page}</a></li>
+								<c:choose>
+									<c:when test="${param.page eq page}">
+										<li class="active">
+											<a href="${pageContext.request.contextPath}/reboard/list?page=${page}&keyword=${keyword}">${page}</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="">
+											<a href="${pageContext.request.contextPath}/reboard/list?page=${page}&keyword=${keyword}">${page}</a>
+										</li>
+									</c:otherwise>
+									
+								</c:choose>
 							</c:forEach>
 							<li><a href="">▶</a></li>
 						</ul>
