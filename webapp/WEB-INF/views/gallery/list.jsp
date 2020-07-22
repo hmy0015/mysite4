@@ -56,7 +56,7 @@
 						
 						<c:forEach items="${iList}" var="vo">
 							<li>
-								<div class="view" data-imageNo="${vo.no}">
+								<div class="view" id="v${vo.no}" data-imageNo="${vo.no}">
 									<img class="imgItem" src="${pageContext.request.contextPath}/upload/${vo.saveName}">
 									<div class="imgWriter">작성자 : <strong>${vo.name}</strong></div>
 								</div>
@@ -177,6 +177,34 @@ $("#viewArea").on("click", "div", function() {
 		success : function(saveName){ /*성공시 처리해야될 코드 작성*/
 			var url = "${pageContext.request.contextPath}/upload/" + saveName;
 			$("#viewModelImg").attr("src", url);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+});
+
+// 이미지 삭제
+$("#btnDel").on("click", function() {
+	console.log("삭제 버튼 클릭");
+	
+	var no = $("#iNo").val();
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/gallery/delete",		
+		type : "post",
+		data : {no: no},
+
+		dataType : "json",
+		success : function(cnt){ /*성공시 처리해야될 코드 작성*/
+			console.log(cnt);
+			if(cnt == 1) { // 삭제 성공 시
+				$("#v" + no).remove(); // 해당 게시글 삭제	
+				$("#viewModal").modal("hide"); // 모달 창 닫기	
+			}
+			else { // 실패 시
+				$("#viewModal").modal("hide"); // 모달 창 닫기
+			}
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);

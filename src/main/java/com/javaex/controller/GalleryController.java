@@ -59,4 +59,14 @@ public class GalleryController {
 		
 		return saveName;
 	}
+	
+	// 이미지 삭제
+	@ResponseBody
+	@RequestMapping("/delete")
+	public int delete(@RequestParam("no") int no) {
+		
+		int cnt = gService.delete(no);
+		
+		return cnt;
+	}
 }

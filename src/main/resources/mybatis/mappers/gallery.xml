@@ -29,13 +29,14 @@
 	</select>
 	
 	<!-- 이미지 삭제 -->
-	<delete id="delImage" parameterType="int">
+	<delete id="delete" parameterType="int">
 		<![CDATA[
 			DELETE gallery
 			WHERE no = #{no}
 		]]>
 	</delete>
 	
+	<!-- 이미지 저장명 가져오기 -->
 	<select id="getSaveName" parameterType="int" resultType="map">
 		<![CDATA[
 			select saveName

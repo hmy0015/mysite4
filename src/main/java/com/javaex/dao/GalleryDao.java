@@ -40,4 +40,13 @@ public class GalleryDao {
 		
 		return saveName;
 	}
+	
+	// dao 이미지 삭제
+	public int delete(int no) {
+		System.out.println("2. Dao 이미지 삭제");
+		
+		int cnt = sqlSession.delete("gallery.delete", no);
+				
+		return cnt;
+	}
 }

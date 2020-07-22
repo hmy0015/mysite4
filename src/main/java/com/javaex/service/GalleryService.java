@@ -83,4 +83,13 @@ public class GalleryService {
 		
 		return gDao.getSaveName(no);
 	}
+	
+	// service 이미지 삭제
+	public int delete(int no) {
+		System.out.println("1. service 이미지 삭제");
+		
+		int cnt = gDao.delete(no);
+		
+		return cnt;
+	}	
 }
