@@ -156,13 +156,13 @@
 
 // 업로드 창 보기
 $("#btnImgUpload").on("click", function() {
-	console.log("이미지 업로드 버튼 클릭");
+	// console.log("이미지 업로드 버튼 클릭");
 	$("#addModal").modal(); // 모달창 열기
 });
 
 //이미지 보기
 $("#viewArea").on("click", "div", function() {
-	console.log("이미지 클릭");
+	// console.log("이미지 클릭");
 
 	var uNo = $("#uNo").val(); // 현재 로그인 한 유저의 no값 받아오기
 	var no = $(this).data("imageno"); // 해당 게시물의 no값 받아오기
@@ -195,7 +195,7 @@ $("#viewArea").on("click", "div", function() {
 
 // 이미지 삭제
 $("#btnDel").on("click", function() {
-	console.log("삭제 버튼 클릭");
+	// console.log("삭제 버튼 클릭");
 	
 	var no = $("#iNo").val();
 	
@@ -206,7 +206,6 @@ $("#btnDel").on("click", function() {
 
 		dataType : "json",
 		success : function(cnt){ /*성공시 처리해야될 코드 작성*/
-			console.log(cnt);
 			if(cnt == 1) { // 삭제 성공 시
 				$("#v" + no).remove(); // 해당 게시글 삭제	
 				$("#viewModal").modal("hide"); // 모달 창 닫기	
