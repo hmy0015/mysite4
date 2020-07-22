@@ -1,0 +1,43 @@
+-- 테이블 삭제
+DROP TABLE gallery;
+
+-- 시퀀스 삭제
+DROP SEQUENCE seq_gallery_no;
+
+-- 테이블 생성
+CREATE TABLE gallery (
+    no NUMBER,
+    user_no NUMBER,
+    content VARCHAR2(1000),
+    filePath VARCHAR2(500),
+    orgName VARCHAR2(200),
+    saveName VARCHAR2(500),
+    fileSize NUMBER,
+    PRIMARY KEY(no),
+    CONSTRAINT c_gallery_pk FOREIGN KEY (user_no)
+    REFERENCES users(no)
+);
+
+-- 시퀀스 생성
+CREATE SEQUENCE seq_gallery_no
+nocache;
+
+-- 데이터 삽입
+INSERT INTO gallery VALUES(seq_gallery_no.nextval, 1,'content', 'filePath', 'orgName', 'saveName', 56);
+
+-- 조인하여 조회
+select g.no,
+        g.user_no,
+        u.name,
+        g.content,
+        g.filePath,
+        g.orgName,
+        g.saveName,
+        g.fileSize
+from gallery g, users u
+where g.user_no = u.no;
+
+-- 데이터 삭제
+DELETE gallery
+WHERE no = 1;
+
