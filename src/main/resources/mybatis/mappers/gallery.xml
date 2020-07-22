@@ -36,12 +36,15 @@
 		]]>
 	</delete>
 	
-	<!-- 이미지 저장명 가져오기 -->
-	<select id="getSaveName" parameterType="int" resultType="map">
+	<!-- 게시글 정보 가져오기 -->
+	<select id="getPostInfo" parameterType="int" resultType="com.javaex.vo.GalleryVo">
 		<![CDATA[
-			select saveName
+			select  user_no,
+			        content,
+			        saveName
 			from gallery
 			where no = #{no}
 		]]>
 	</select>
+	
 </mapper>

@@ -131,6 +131,7 @@
 					</div>
 					
 					<input type="hidden" name="iNo" value="" id="iNo">
+					<input type="hidden" name="uNo" value="${authUser.no}" id="uNo">
 					
 				</div>
 				<form method="" action="">
@@ -159,24 +160,32 @@ $("#btnImgUpload").on("click", function() {
 	$("#addModal").modal(); // 모달창 열기
 });
 
-// 이미지 보기
+//이미지 보기
 $("#viewArea").on("click", "div", function() {
 	console.log("이미지 클릭");
-	
+
+	var uNo = $("#uNo").val(); // 현재 로그인 한 유저의 no값 받아오기
 	var no = $(this).data("imageno"); // 해당 게시물의 no값 받아오기
 	$("#iNo").val(no);
 	
 	$("#viewModal").modal(); // 모달창 열기
 	
 	$.ajax({
-		url : "${pageContext.request.contextPath}/gallery/getSaveName",		
+		url : "${pageContext.request.contextPath}/gallery/getPostInfo",		
 		type : "post",
 		data : {no: no},
-
 		dataType : "json",
-		success : function(saveName){ /*성공시 처리해야될 코드 작성*/
-			var url = "${pageContext.request.contextPath}/upload/" + saveName;
+		success : function(vo){ /*성공시 처리해야될 코드 작성*/
+			// image 출력
+			var url = "${pageContext.request.contextPath}/upload/" + vo.saveName;
 			$("#viewModelImg").attr("src", url);
+			
+			// content 출력
+			$("#viewModelContent").text(vo.content);
+			
+			if(uNo != vo.user_no) { // 해당 게시물을 올린 글쓴이가 아닌 경우 삭제 버튼 안 보임
+				$("#btnDel").hide(); 
+			}
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -213,9 +222,6 @@ $("#btnDel").on("click", function() {
 });
 
 </script>
-
-
-
 
 </html>
 
