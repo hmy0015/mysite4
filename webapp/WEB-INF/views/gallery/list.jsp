@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/assets/css/gallery.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/gallery.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 </head>
 
@@ -25,7 +24,7 @@
 		<!-- //header -->
 		<!-- //nav -->
 
-		<c:import url="/WEB-INF/views/include/galleryAside.jsp"></c:import>
+		<c:import url="/WEB-INF/views/include/asideGallery.jsp"></c:import>
 		<!-- //aside -->
 
 
@@ -47,12 +46,10 @@
 
 			<div id="gallery">
 				<div id="list">
-			
-					
+				<c:if test="${authUser != null}">
 						<button id="btnImgUpload">이미지올리기</button>
 						<div class="clear"></div>
-
-			
+				</c:if>
 					<ul id="viewArea">
 						
 						<!-- 이미지반복영역 -->
@@ -63,7 +60,6 @@
 								</div>
 							</li>
 						<!-- 이미지반복영역 -->
-						
 						
 					</ul>
 				</div>
@@ -91,15 +87,17 @@
 					<h4 class="modal-title">이미지등록</h4>
 				</div>
 				
-				<form method="" action="" >
+				<!-- 파일 첨부를 위한 form 사용 시 [ enctype="multipart/form-data" ]를 필수적으로 입력해야 함 -->
+				<form method="post" action="${pageContext.request.contextPath}/gallery/imageUpload" enctype="multipart/form-data">
+					<input type="hidden" name="uNo" value="${authUser.no}">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="form-text">글작성</label>
-							<input id="addModalContent" type="text" name="" value="" >
+							<input id="addModalContent" type="text" name="content" value="" >
 						</div>
 						<div class="form-group">
 							<label class="form-text">이미지선택</label>
-							<input id="file" type="file" name="" value="" >
+							<input id="file" type="file" name="image">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -150,9 +148,12 @@
 </body>
 
 <script type="text/javascript">
-
-
-
+// $("#id").hide(); // 숨김 처리
+// $("#id").show(); // 보임
+$("#btnImgUpload").on("click", function() {
+	console.log("이미지 업로드 버튼 클릭");
+	$("#addModal").modal(); // 모달창 열기
+});
 </script>
 
 

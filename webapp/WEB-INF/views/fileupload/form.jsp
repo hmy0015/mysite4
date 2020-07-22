@@ -21,7 +21,7 @@
 		<!-- //header -->
 		<!-- //nav -->
 
-		<c:import url="/WEB-INF/views/include/galleryAside.jsp"></c:import>
+		<c:import url="/WEB-INF/views/include/asideGallery.jsp"></c:import>
 		<!-- //aside -->
 
 		<div id="content">
@@ -40,7 +40,8 @@
 			<!-- //content-head -->
 		
 			<div id="file">
-				<form method="post" action="${pageContext.request.contextPath}/fileupload/upload" enctype="multipart/form-data"> <!-- 파일 첨부를 위한 form 사용 시 [ enctype="multipart/form-data" ]를 필수적으로 입력해야 함 -->
+				<!-- 파일 첨부를 위한 form 사용 시 [ enctype="multipart/form-data" ]를 필수적으로 입력해야 함 -->
+				<form method="post" action="${pageContext.request.contextPath}/fileupload/upload" enctype="multipart/form-data">
 					<table>
 						<colgroup>
 							<col style="width: 600px;">

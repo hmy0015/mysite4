@@ -6,42 +6,49 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.dao.GalleryDao;
+import com.javaex.vo.GalleryVo;
+
 @Service
-public class FileUploadService {
+public class GalleryService {
+	@Autowired
+	private GalleryDao gDao;
 	
-	public String restore(MultipartFile file) {
+	// service 이미지 업로드
+	public int imageUpload(GalleryVo galleryVo, MultipartFile image) {
 		System.out.println("1. service 파일 업로드");
+
 		//////////////// 데이터 추출 ////////////////
-		
 		// 파일이 저장 될 하드의 위치
 		String saveDir = "C:\\javaStudy\\upload";
 		
-		// 업로드 된 파일의 이름
-		String orgName = file.getOriginalFilename();
+		// 사용자가 업로드 한 파일의 이름 (orgName)
+		String orgName = image.getOriginalFilename();
 		System.out.println("파일명 : " + orgName);
 		
-		// 해당 파일의 확장자 추출
-		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		// 해당 파일의 확장자 추출 (exName)
+		String exName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf("."));
 		System.out.println("확장자 : " + exName);
 
-		// 업로드 된 파일의 사이즈
-		long fileSize = file.getSize(); // getSize의 자료형은 long임
+		// 업로드 된 파일의 사이즈 (fileSize)
+		long fileSize = image.getSize();
 		System.out.println("파일 사이즈 : " + fileSize);
 		
-		// 하드에 저장 될 파일의 이름
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName; // 현재 시간 + 영문과 숫자를 조합한 랜덤 이름 + 확장자
+		// 하드에 저장 될 파일의 이름 (saveName)
+		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 		System.out.println("저장명 : " + saveName);
 
-		// 하드에 저장 된 파일의 경로
-		String filePath = saveDir + "\\" + saveName;
-
+		// 하드에 저장 된 파일의 경로 (filePath)
+		String filePath = saveDir + "//" + saveName;
+		
 		//////////////// 추출한 데이터 서버에 복사 ////////////////
 		try {
 			
-			byte[] fileData =  file.getBytes(); // 저장할 파일을 'fileData' 변수에 담기
+			byte[] fileData =  image.getBytes(); // 저장할 파일을 'fileData' 변수에 담기
 			OutputStream out = new FileOutputStream(filePath); // 하드에 사진을 저장하기 위해서 아웃풋스트림이 사용됨
 			BufferedOutputStream bOut = new BufferedOutputStream(out); // 버퍼에 담기 (속도 향상)
 			
@@ -53,8 +60,10 @@ public class FileUploadService {
 			e.printStackTrace();
 		}
 		
-		// 필요한 정보를 파일에서 추출하여 db에 저장 (no : nextval, orgName, saveName, filePath)
-		
-		return saveName;
+		// 이미지 정보 vo에 담기
+		GalleryVo vo = new GalleryVo ( galleryVo.getUser_no(), galleryVo.getContent(),
+										filePath, orgName, saveName, fileSize);
+	
+		return gDao.insert(vo);
 	}
 }
