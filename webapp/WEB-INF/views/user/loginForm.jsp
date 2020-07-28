@@ -37,10 +37,6 @@
 			<div id="user">
 				<div id="loginForm">
 				
-					<c:if test="${param.result == 'fail'}">
-						<p> <br> 로그인에 실패했습니다. 다시 로그인해주세요. <br><br> </p>
-					</c:if>
-					
 					<form action="${pageContext.request.contextPath}/user/login" method="">
 
 						<!-- 아이디 -->
@@ -52,9 +48,12 @@
 						<!-- 비밀번호 -->
 						<div class="form-group">
 							<label class="form-text" for="input-pass">비밀번호</label> 
-							<input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+							<input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 						</div>
 
+						<c:if test="${param.result == 'fail'}">
+							<br><font color="red">아이디 또는 비밀번호가 일치하지 않습니다.</font><br>
+						</c:if>
 						
 						<!-- 버튼영역 -->
 		                <div class="button-area">

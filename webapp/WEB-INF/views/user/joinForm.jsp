@@ -38,7 +38,7 @@
 
 			<div id="user">
 				<div id="joinForm">
-					<form action="${pageContext.request.contextPath}/user/join" method="">
+					<form id="joinFormTag" action="${pageContext.request.contextPath}/user/join" method="">
 
 						<!-- 아이디 -->
 						<div class="form-group">
@@ -78,12 +78,10 @@
 						<div class="form-group">
 							<span class="form-text">약관동의</span> 
 							
-							<input type="checkbox" id="chk-agree" value="" name="">
+							<input type="checkbox" id="chk-agree" value="y" name="">
 							<label for="chk-agree">서비스 약관에 동의합니다.</label> 
 						</div>
-						
-						<span><font color='red'>* 약관동의가 필요합니다.</font></span>
-						
+
 						<!-- 버튼영역 -->
 		                <div class="button-area">
 		                    <button type="submit" id="btn-submit">회원가입</button>
@@ -142,6 +140,19 @@
 			}
 		});
 
+	});
+	
+	// 약관 동의
+	$("#joinFormTag").on("click", function(){ // form에 ID를 매겨야 함
+		var agree = $("#chk-agree").is(":checked"); // 해당 아이디를 가진 태그에 체크가 되어있는 지를 확인하는 함수
+		
+		if(agree == true) { /* 체크 한 경우 */
+			return true;
+		} 
+		else { /* 체크하지 않은 경우 */
+			alert("약관동의가 필요합니다."); // 팝업창 띄우기
+			return false;
+		}
 	});
 </script>
 </html>
